@@ -1,8 +1,7 @@
-const Pool = require("mysql/lib/Pool");
+const express=require("express");
+const app=express();
 
-module.exports.databaseOptions = {
-    host: "localhost",
-    database: " ammachchi_canteen_db ",
-    user: "root",
-    password: "Chari123",
-  };
+app.listen(3001,()=>{
+console.log("server running on port 3001");
+
+});
