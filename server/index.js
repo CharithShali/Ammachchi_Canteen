@@ -17,15 +17,6 @@ db.connect((error) => {
 
 //Routers 
 
-const{posts} =required("../modules");
-router.get("/",(req,res)=>{
 
-res.json("hello world");
-
-});
-router.post("/",(req,res)=>{
-const post=req.body;
-
-})
    
  
