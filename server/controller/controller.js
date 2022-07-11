@@ -22,8 +22,7 @@ app.use(express.json());
 
 app.post("/create", (req, res) => {
   const name = req.body.name;
-  const phone_number  = req.p.number;
-
+  const phone_number  = req.body.p_number;
 
   db.query(
     "INSERT INTO seller (name,phone_number) VALUES (?,?)",
