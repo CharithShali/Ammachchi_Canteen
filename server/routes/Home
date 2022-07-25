@@ -1,0 +1,19 @@
+const express = require("express");
+const dbOperations = require("../controllers/Database_Operations");
+
+
+const router = express.Router();
+
+// @route   GET api/Home
+// @desc    get Menu order
+router.get("/", async (req, res) => {
+  console.log("Today Menu");
+  try {
+    let data = await dbOperations.getMenuInfo();
+    res.send(data);
+  } catch (e) {
+    res.send(e.message);
+  }
+});
+
+module.exports = router;
