@@ -68,7 +68,7 @@ function getMenuInfo() {
       db.query(sql, (error, result) => {
         if (error) console.log(error.message);
         resolve(result);
-        reject(new Error("from complaint getSellersInfo"));
+        reject(new Error("from  getSellersInfo"));
       });
     });
   }
