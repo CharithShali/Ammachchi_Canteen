@@ -72,6 +72,25 @@ function getMenuInfo() {
       });
     });
   }
+
+  function addfooditem(details) {
+    return new Promise(async (resolve, reject) => {
+      let { seller_id,name } =
+        details;
+        console.log(name);
+  let sql = `INSERT INTO food_item(seller_id,name)
+      VALUES('${seller_id}','${name}')`;
+                
+      db.query(sql, (error, results) => {
+        if (error) {
+          console.log(error.message);
+          resolve(false);
+        }
+        resolve(true);
+        reject(new Error("from addfooditem p"));
+      });
+    });
+  }
   
   module.exports = {
     getMenuInfo: getMenuInfo,
