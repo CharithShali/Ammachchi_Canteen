@@ -42,6 +42,26 @@ function getMenuInfo() {
     });
   }
 
+  function addtodaymenu(details) {
+    return new Promise(async (resolve, reject) => {
+      let { food_item_id,name } =
+        details;
+        console.log(name);
+  let sql = `INSERT INTO today_menu(ood_item_id,name)
+      VALUES('${food_item_id}','${name}')`;
+                
+      db.query(sql, (error, results) => {
+        if (error) {
+          console.log(error.message);
+          resolve(false);
+        }
+        resolve(true);
+        reject(new Error("from addComplaint"));
+      });
+    });
+  }
+
+
   function seller() {
     return new Promise((resolve, reject) => {
       sql = `SELECT * FROM seller`;
@@ -57,5 +77,6 @@ function getMenuInfo() {
     getMenuInfo: getMenuInfo,
     addSeller: addSeller,
     seller:seller,
+    addtodaymenu:addtodaymenu,
 
   };

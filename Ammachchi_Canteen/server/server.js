@@ -9,6 +9,7 @@ app.use(cors());
 
 const today_menu = require("./routes/home");
 const addseller = require("./routes/addSeller");
+const addtodaymenu = require("./routes/addtodaymenu");
 const seller = require("./routes/seller");
 //const foods = require("./routes/sellers");
 
@@ -19,6 +20,7 @@ console.log("hiii");
 app.use("/api/home", today_menu);
 app.use("/api/addseller", addseller);
 app.use("/api/seller", seller);
+app.use("/api/addtodaymenu", addtodaymenu);
 
 
 app.listen(3001,()=>{
