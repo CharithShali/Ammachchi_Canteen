@@ -97,5 +97,6 @@ function getMenuInfo() {
     addSeller: addSeller,
     seller:seller,
     addtodaymenu:addtodaymenu,
+    addfooditem:addfooditem,
 
   };
