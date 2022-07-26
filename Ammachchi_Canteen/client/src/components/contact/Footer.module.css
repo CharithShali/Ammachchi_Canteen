@@ -1,0 +1,80 @@
+.footer {
+  background-image: url("../../images/footer.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  padding: 2rem 0;
+  color: white;
+}
+
+.logo {
+  font-family: "Paytone One", sans-serif;
+  font-size: 1.8rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+.footer-content ul {
+  list-style: none;
+  padding: 0.5rem 0 1.5rem;
+}
+
+.footer-content a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer-content a:hover {
+  color: var(--green);
+  transition: all 0.3s ease-in-out;
+  font-weight: 600;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  width: 70%;
+}
+
+.details p {
+  font-weight: bold;
+
+}
+
+.details span {
+  font-weight: 300;
+  padding-left: 1rem;
+}
+
+/* Media Queries */
+
+@media (min-width:600px) {
+
+
+
+  .details p,
+  .details span,
+  .footer-content a {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    display: grid;
+    grid-template-columns: 45% auto auto;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-content {
+    grid-template-columns: 35% auto auto;
+    gap: 2rem;
+  }
+}

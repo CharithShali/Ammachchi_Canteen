@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --red: #ff0000;
+  --light-green: rgba(211, 239, 193, 0.7);
+  --green: #84b121;
+  --dark-green: #425e06;
+  --white: #fff;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+.paragraph {
+  font-size: 1rem;
+  line-height: 160.5%;
+  text-transform: capitalize;
+  padding: 1rem 0;
+  font-weight: 300;
+}
+
+/* Media Queries */
+
+@media (min-width: 600px) {
+  .paragraph {
+    font-size: 1.2rem;
+  }
+}

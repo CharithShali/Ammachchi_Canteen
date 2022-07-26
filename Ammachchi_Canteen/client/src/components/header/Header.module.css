@@ -1,0 +1,86 @@
+.header {
+  height: 100%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("../../images/food3.jpg");
+  background-position: 70%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.header-intro {
+  padding: 10rem 0 15rem;
+  max-width: 350px;
+}
+
+.header-intro h1,
+.header-intro span {
+  font-size: 3rem;
+  text-transform: uppercase;
+  line-height: 100%;
+  font-weight: 900;
+  font-size: 3.2rem;
+}
+
+.header-intro h1 {
+  letter-spacing: 1px;
+}
+
+.header-intro h1,
+.header-intro p {
+  color: var(--white);
+}
+
+.header-intro span {
+  color: var(--light-green);
+}
+
+.header-intro p {
+  font-weight: 400;
+}
+
+.header-intro a {
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+  .header {
+    background-position: center;
+  }
+
+  .header-intro {
+    margin-left: auto;
+    width: 55%;
+    max-width: none;
+  }
+
+  .header-intro h1,
+  .header-intro span {
+    font-size: 4.5rem;
+  }
+
+  .header {
+    background-position: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header {
+    height: 120vh;
+  }
+
+  .header-intro {
+    width: 40%;
+  }
+
+  .header-intro h1,
+  .header-intro span {
+    font-size: 5.5rem;
+  }
+
+  .header-intro p {
+    font-size: 1.2rem;
+  }
+}
