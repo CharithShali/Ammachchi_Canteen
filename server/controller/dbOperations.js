@@ -102,5 +102,5 @@ function getMenuInfo() {
     addfooditem:addfooditem,
 
   };
-  //merged
+  
   
