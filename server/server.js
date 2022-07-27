@@ -24,10 +24,6 @@ app.use("/api/addseller", addseller);
 app.use("/api/seller", seller);
 app.use("/api/addtodaymenu", addtodaymenu);
 app.use("/api/addfooditem", addfooditem);
-<<<<<<< HEAD
-=======
-
->>>>>>> charith
 
 
 app.listen(3001,()=>{
