@@ -93,6 +93,25 @@ function getMenuInfo() {
       });
     });
   }
+
+  function addcompliant(details) {
+    return new Promise(async (resolve, reject) => {
+      let { C_date,subject,description,customer_id } =
+        details;
+        console.log(C_date);
+  let sql = `INSERT INTO complaint( C_date,subject,description,customer_id)
+      VALUES('${C_date}','${subject}','${description}','${customer_id}')`;
+                
+      db.query(sql, (error, results) => {
+        if (error) {
+          console.log(error.message);
+          resolve(false);
+        }
+        resolve(true);
+        reject(new Error("from addfooditem p"));
+      });
+    });
+  }
   
   module.exports = {
     getMenuInfo: getMenuInfo,
