@@ -16,7 +16,7 @@ function getMenuInfo() {
       db.query(sql, (error, result) => {
         if (error) console.log(error.message);
         resolve(result);
-        reject(new Error("from  getSellersInfo"));
+        reject(new Error("from  getSellers Info"));
       });
     });
   }
@@ -37,8 +37,10 @@ function getMenuInfo() {
           resolve(false);
         }
         resolve(true);
+
+        reject(new Error("from addseller"));
         reject(new Error("from addSeller"));
-      });
+});
     });
   }
 
@@ -47,7 +49,7 @@ function getMenuInfo() {
       let { food_item_id,name } =
         details;
         console.log(name);
-  let sql = `INSERT INTO today_menu(ood_item_id,name)
+  let sql = `INSERT INTO today_menu(food_item_id,name)
       VALUES('${food_item_id}','${name}')`;
                 
       db.query(sql, (error, results) => {
@@ -68,7 +70,7 @@ function getMenuInfo() {
       db.query(sql, (error, result) => {
         if (error) console.log(error.message);
         resolve(result);
-        reject(new Error("from  getSellersInfo"));
+        reject(new Error("from getSellersInfo"));
       });
     });
   }
@@ -100,3 +102,5 @@ function getMenuInfo() {
     addfooditem:addfooditem,
 
   };
+  //merged
+  
