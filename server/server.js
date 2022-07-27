@@ -12,6 +12,7 @@ const addseller = require("./routes/addSeller");
 const addtodaymenu = require("./routes/addtodaymenu");
 const addfooditem = require("./routes/addfooditem");
 const seller = require("./routes/seller");
+const addfooditem = require("./routes/addfooditem");
 //const foods = require("./routes/sellers");
 
 
@@ -23,6 +24,10 @@ app.use("/api/addseller", addseller);
 app.use("/api/seller", seller);
 app.use("/api/addtodaymenu", addtodaymenu);
 app.use("/api/addfooditem", addfooditem);
+<<<<<<< HEAD
+=======
+
+>>>>>>> charith
 
 
 app.listen(3001,()=>{
