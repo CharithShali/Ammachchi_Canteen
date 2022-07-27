@@ -12,7 +12,7 @@ router.post("/", async (req, res) => {
     try {
       let data = await dbOperations.addfooditem(details);
       if (data) return res.status(200).json({ msg: "food added" });
-      res.status(400).json({ error: "FATAL ERROR: food not added" });
+      res.status(400).json({ error: "FATAL ERROR : food not added" });
     } catch (e) {
       console.log(e.message);
     }
