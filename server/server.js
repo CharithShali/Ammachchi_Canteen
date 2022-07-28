@@ -4,6 +4,20 @@ const app=express();
 const cors = require("cors");
 app.use(express.json());
 app.use(cors());
+const path=require('path');
+const multer=require('multer');
+const storage=multer.diskStorage({
+    destination: "../server/assests/",
+    filename:(req,file,cb)=>{
+     return cb(null,`NEW`)
+   }
+   }
+   )
+
+
+const upload=multer({
+    storage:storage
+    })
 
 
 
@@ -23,8 +37,8 @@ app.use("/api/home", today_menu);
 app.use("/api/addseller", addseller);
 app.use("/api/seller", seller);
 app.use("/api/addtodaymenu", addtodaymenu);
-app.use("/api/addfooditem", addfooditem);
-app.use("/api/addfooditem", addcomplaint);
+app.use("/api/addfooditem",addfooditem.single('image'),addfooditem);
+app.use("/api/addcomplaint", addcomplaint);
 
 
 

@@ -49,7 +49,7 @@ function getMenuInfo() {
       let { food_item_id,name } =
         details;
         console.log(name);
-  let sql = `INSERT INTO today_menu(food_item_id,name)
+  let sql = `INSERT INTO today_menu(food_item_id,name,image)
       VALUES('${food_item_id}','${name}')`;
                 
       db.query(sql, (error, results) => {
@@ -77,11 +77,11 @@ function getMenuInfo() {
 
   function addfooditem(details) {
     return new Promise(async (resolve, reject) => {
-      let { seller_id,name } =
+      let { seller_id,name,image } =
         details;
         console.log(name);
   let sql = `INSERT INTO food_item(seller_id,name)
-      VALUES('${seller_id}','${name}')`;
+      VALUES('${seller_id}','${name}','${image.filename}')`;
                 
       db.query(sql, (error, results) => {
         if (error) {
