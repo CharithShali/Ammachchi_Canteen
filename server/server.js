@@ -17,7 +17,6 @@ const today_menu = require("./routes/home");
 const addtodaymenu = require("./routes/addtodaymenu");
 const addfooditem = require("./routes/addfooditem");
 const seller = require("./routes/seller");
-const addfooditem = require("./routes/addfooditem");
 const addcomplaint = require("./routes/addcomplaint");
 const customer = require("./routes/customer");
 //const addseller= require("./routes/addseller");

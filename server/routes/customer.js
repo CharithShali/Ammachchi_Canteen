@@ -7,9 +7,9 @@ module.exports = router;
 
 module.exports = router;
 router.get("/", async (req, res) => {
-  console.log("Today Menu");
+  console.log("Customers");
   try {
-    let data = await dbOperations.seller();
+    let data = await dbOperations.customer();
     res.send(data);
   } catch (e) {
     res.send(e.message);
@@ -23,7 +23,6 @@ router.get("/", async (req, res) => {
 router.post("/addcustomer", async (req, res) => {
   let details = req.body;
   console.log(details.name)
-  
   try {
     let data = await dbOperations.addCustomer(details);
     if (data) return res.status(200).json({ msg: "complaint added" });
