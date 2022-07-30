@@ -5,16 +5,25 @@ module.exports = router;
 
 // @route   GET api/Home
 // @desc    get Menu order
-router.post("/", async (req, res) => {
+router.post("/addcomplaint", async (req, res) => {
     let details = req.body;
     console.log(details.name)
     
     try {
-      let data = await dbOperations.addcomplaint(details);
+      let data = await dbOperations.addcompliant(details);
       if (data) return res.status(200).json({ msg: "complaint added" });
       res.status(400).json({ error: "FATAL ERROR : complaint not added" });
     } catch (e) {
       console.log(e.message);
+    }
+  });
+  router.get("/", async (req, res) => {
+    console.log("Complaint");
+    try {
+      let data = await dbOperations.complaint();
+      res.send(data);
+    } catch (e) {
+      res.send(e.message);
     }
   });
   module.exports = router;

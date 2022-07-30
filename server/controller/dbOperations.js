@@ -114,6 +114,16 @@ function getMenuInfo() {
     });
   }
 
+  function complaint() {
+    return new Promise((resolve, reject) => {
+      sql = `SELECT * FROM complaint`;
+      db.query(sql, (error, result) => {
+        if (error) console.log(error.message);
+        resolve(result);
+        reject(new Error("from ComplaintInfo"));
+      });
+    });
+  }
 
 
   function customer() {
@@ -158,6 +168,8 @@ function getMenuInfo() {
     addfooditem:addfooditem,
     customer: customer,
     addCustomer:addCustomer,
+    addcompliant:addcompliant,
+    complaint:complaint
 
   };
   

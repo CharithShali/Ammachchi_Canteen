@@ -17,7 +17,7 @@ const today_menu = require("./routes/home");
 const addtodaymenu = require("./routes/addtodaymenu");
 const addfooditem = require("./routes/addfooditem");
 const seller = require("./routes/seller");
-const addcomplaint = require("./routes/addcomplaint");
+const complaint = require("./routes/complaint");
 const customer = require("./routes/customer");
 //const addseller= require("./routes/addseller");
 
@@ -31,7 +31,7 @@ app.use("/api/home", today_menu);
 app.use("/api/seller", seller);
 app.use("/api/addtodaymenu", addtodaymenu);
 app.use("/api/addfooditem",addfooditem);
-app.use("/api/addcomplaint", addcomplaint);
+app.use("/api/complaint", complaint);
 app.use("/api/customer", customer);
 //app.use("/api/addseller", addseller);
 
