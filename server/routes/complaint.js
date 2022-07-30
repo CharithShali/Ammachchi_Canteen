@@ -5,7 +5,7 @@ module.exports = router;
 
 // @route   GET api/Home
 // @desc    get Menu order
-router.post("/addcomplaint", async (req, res) => {
+router.post("/add", async (req, res) => {
     let details = req.body;
     console.log(details.name)
     

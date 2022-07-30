@@ -5,7 +5,7 @@ const router = express.Router();
 
 // @route   GET api/Home
 // @desc    get Menu order
-router.post("/", async (req, res) => {
+router.post("/add", async (req, res) => {
   let details = req.body;
   console.log(details.name)
   

@@ -14,8 +14,8 @@ app.use(cors());
 
 
 const today_menu = require("./routes/home");
-const addtodaymenu = require("./routes/addtodaymenu");
-const addfooditem = require("./routes/addfooditem");
+const todaymenu = require("./routes/todaymenu");
+const fooditem = require("./routes/fooditem");
 const seller = require("./routes/seller");
 const complaint = require("./routes/complaint");
 const customer = require("./routes/customer");
@@ -29,8 +29,8 @@ const customer = require("./routes/customer");
 console.log("hiii");
 app.use("/api/home", today_menu);
 app.use("/api/seller", seller);
-app.use("/api/addtodaymenu", addtodaymenu);
-app.use("/api/addfooditem",addfooditem);
+app.use("/api/todaymenu", todaymenu);
+app.use("/api/fooditem",fooditem);
 app.use("/api/complaint", complaint);
 app.use("/api/customer", customer);
 //app.use("/api/addseller", addseller);
