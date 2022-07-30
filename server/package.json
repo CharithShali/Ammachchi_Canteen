@@ -11,6 +11,10 @@
     "yarn": "^1.22.19"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "nodemon": "^v1.3.7"
+  },
+
+  "scripts": {
+    "start": "nodemon server.js"
   }
 }

@@ -40,8 +40,9 @@ function getMenuInfo() {
 
         reject(new Error("from addseller"));
       });
+            });
 
-    });
+    
   }
 
   function addtodaymenu(details) {
@@ -112,6 +113,42 @@ function getMenuInfo() {
       });
     });
   }
+
+
+
+  function customer() {
+    return new Promise((resolve, reject) => {
+      sql = `SELECT * FROM customer`;
+      db.query(sql, (error, result) => {
+        if (error) console.log(error.message);
+        resolve(result);
+        reject(new Error("from getCustomerInfo"));
+      });
+    });
+  }
+
+
+  function addCustomer(details) {
+    return new Promise(async (resolve, reject) => {
+      let { name,email,password} =
+        details;
+        console.log(name);
+  
+  let sql = `INSERT INTO customer(name,email,password)
+      VALUES('${name}','${email}','${password}')`;
+                
+      db.query(sql, (error, results) => {
+        if (error) {
+          console.log(error.message);
+          resolve(false);
+        }
+        resolve(true);
+
+        reject(new Error("from addcustomer"));
+      });
+
+    });
+  }
   
   module.exports = {
     getMenuInfo: getMenuInfo,
@@ -119,6 +156,8 @@ function getMenuInfo() {
     seller:seller,
     addtodaymenu:addtodaymenu,
     addfooditem:addfooditem,
+    customer: customer,
+    addCustomer:addCustomer,
 
   };
   
