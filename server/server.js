@@ -1,32 +1,25 @@
 const express=require("express");
 const config = require("./config/config")
 const app=express();
+
+const helmet = require("helmet");
+app.use(helmet());
+
+
 const cors = require("cors");
 app.use(express.json());
 app.use(cors());
-const path=require('path');
-const multer=require('multer');
-const storage=multer.diskStorage({
-    destination: "../server/assests/",
-    filename:(req,file,cb)=>{
-     return cb(null,`NEW`)
-   }
-   }
-   )
 
-
-const upload=multer({
-    storage:storage
-    })
 
 
 
 const today_menu = require("./routes/home");
-const addseller = require("./routes/addSeller");
 const addtodaymenu = require("./routes/addtodaymenu");
 const seller = require("./routes/seller");
 const addfooditem = require("./routes/addfooditem");
 const addcomplaint = require("./routes/addcomplaint");
+//const addseller= require("./routes/addseller");
+
 //const foods = require("./routes/sellers");
 
 
@@ -34,11 +27,11 @@ const addcomplaint = require("./routes/addcomplaint");
 // Routes
 console.log("hiii");
 app.use("/api/home", today_menu);
-app.use("/api/addseller", addseller);
 app.use("/api/seller", seller);
 app.use("/api/addtodaymenu", addtodaymenu);
-app.use("/api/addfooditem",addfooditem.single('image'),addfooditem);
+app.use("/api/addfooditem",addfooditem);
 app.use("/api/addcomplaint", addcomplaint);
+//app.use("/api/addseller", addseller);
 
 
 

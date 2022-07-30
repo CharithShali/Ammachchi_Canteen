@@ -49,7 +49,7 @@ function getMenuInfo() {
       let { food_item_id,name } =
         details;
         console.log(name);
-  let sql = `INSERT INTO today_menu(food_item_id,name,image)
+  let sql = `INSERT INTO today_menu(food_item_id,name)
       VALUES('${food_item_id}','${name}')`;
                 
       db.query(sql, (error, results) => {
@@ -80,8 +80,8 @@ function getMenuInfo() {
       let { seller_id,name,image } =
         details;
         console.log(name);
-  let sql = `INSERT INTO food_item(seller_id,name)
-      VALUES('${seller_id}','${name}','${image.filename}')`;
+  let sql = `INSERT INTO food_item(seller_id,name,image)
+      VALUES('${seller_id}','${name}','${image}')`;
                 
       db.query(sql, (error, results) => {
         if (error) {
