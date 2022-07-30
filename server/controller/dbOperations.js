@@ -16,7 +16,7 @@ function getMenuInfo() {
       db.query(sql, (error, result) => {
         if (error) console.log(error.message);
         resolve(result);
-        reject(new Error("from  getSellers Info"));
+        reject(new Error("from  todaymenu"));
       });
     });
   }
@@ -109,7 +109,7 @@ function getMenuInfo() {
           resolve(false);
         }
         resolve(true);
-        reject(new Error("from addfooditem p"));
+        reject(new Error("from complaint"));
       });
     });
   }
