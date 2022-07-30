@@ -77,11 +77,11 @@ function getMenuInfo() {
 
   function addfooditem(details) {
     return new Promise(async (resolve, reject) => {
-      let { seller_id,name } =
+      let { seller_id,name,image } =
         details;
         console.log(name);
-  let sql = `INSERT INTO food_item(seller_id,name)
-      VALUES('${seller_id}','${name}')`;
+  let sql = `INSERT INTO food_item(seller_id,name,image)
+      VALUES('${seller_id}','${name}','${image}')`;
                 
       db.query(sql, (error, results) => {
         if (error) {
