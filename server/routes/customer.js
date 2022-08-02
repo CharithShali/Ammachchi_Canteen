@@ -1,7 +1,12 @@
 const express = require("express");
+const mysql = require("mysql");
+var config = require("../config/config");
 const dbOperations = require("../controller/dbOperations")
 const router = express.Router();
 module.exports = router;
+let con = mysql.createConnection(config.databaseOptions);
+const bcrypt=require("bcrypt");
+
 
 
 
@@ -21,16 +26,61 @@ router.get("/", async (req, res) => {
 // @route   GET api/Home
 // @desc    get Menu order
 router.post("/add", async (req, res) => {
-  let details = req.body;
-  console.log(details.name)
-  try {
-    let data = await dbOperations.addCustomer(details);
-    if (data) return res.status(200).json({ msg: "complaint added" });
-    res.status(400).json({ error: "FATAL ERROR: complaint not added" });
-  } catch (e) {
-    console.log(e.message);
+  var name=req.body.name;
+  var email=req.body.email;
+  var password=req.body.password;
+  console.log(password);
+  var cpassword=req.body.cpassword;
+if(cpassword==password){
+
+var sql = "select * from customer where email=?;";
+con.query(sql,[email],function(err,result,fields){
+if(err) throw err;
+if(result.length>0){
+  res.redirect("/");
+}
+else{
+  
+//var hashpassword=bcrypt.hashSync(password,10);
+var sql="insert into customer(name,email,password) values(?,?,?);";
+con.query(sql,[name,email,password],function(err,result,fields){
+if(err) throw err;
+res.redirect("/");
+
+});
+
+}
+
+});
+
+}else{
+res.redirect("/");
+
+}
+
+});
+
+//post requiest for user login
+router.post("/home",function(req,res,next){
+var email=req.body.email;
+var password=req.body.password;
+var sql ="select * from customer where email=?;";
+con.query(sql,[email],function(err,result,fields){
+  if(err) throw err;
+
+  if(result.length && bcrypt.compareSync(password,result[0].password)){
+    req.session.email=email;
+    res.redirect("/home")
   }
 });
+});
+
+//Routes for homepage 
+router.get("/home",function(req,res,next){
+res.render('home',{message:"welcome,"+req.session.email});
+
+});
+
 
 
 module.exports = router;
