@@ -5,7 +5,7 @@ const dbOperations = require("../controller/dbOperations")
 const router = express.Router();
 module.exports = router;
 let con = mysql.createConnection(config.databaseOptions);
-const bcrypt=require("bcrypt");
+const bcrypt=require("bcryptjs");
 
 
 
@@ -30,30 +30,20 @@ router.post("/add", async (req, res) => {
   var email=req.body.email;
   var password=req.body.password;
   console.log(password);
-  var cpassword=req.body.cpassword;
-if(cpassword==password){
+  var cpassword=req.body.cpassword
+  if(cpassword==password)  { 
 
-var sql = "select * from customer where email=?;";
-con.query(sql,[email],function(err,result,fields){
-if(err) throw err;
-if(result.length>0){
-  res.redirect("/");
+   
+    console.log("catch here");
+      var hashpassword=bcrypt.hashSync(password,10);
+      var sql="insert into customer(name,email,password) values(?,?,?);";
+
+      con.query(sql,[name,email,hashpassword],function(err,result,fields){
+      if(err) throw err;
+                });
+ 
 }
 else{
-  
-//var hashpassword=bcrypt.hashSync(password,10);
-var sql="insert into customer(name,email,password) values(?,?,?);";
-con.query(sql,[name,email,password],function(err,result,fields){
-if(err) throw err;
-res.redirect("/");
-
-});
-
-}
-
-});
-
-}else{
 res.redirect("/");
 
 }
@@ -61,7 +51,7 @@ res.redirect("/");
 });
 
 //post requiest for user login
-router.post("/home",function(req,res,next){
+router.post("/login",function(req,res,next){
 var email=req.body.email;
 var password=req.body.password;
 var sql ="select * from customer where email=?;";
@@ -70,7 +60,7 @@ con.query(sql,[email],function(err,result,fields){
 
   if(result.length && bcrypt.compareSync(password,result[0].password)){
     req.session.email=email;
-    res.redirect("/home")
+    console.log("okay")
   }
 });
 });
