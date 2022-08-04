@@ -1,5 +1,6 @@
 const mysql = require("mysql");
 var config = require("../config/config");
+const bcrypt=require("bcrypt");
 
 // Connect to Database
 let db = mysql.createConnection(config.databaseOptions);
@@ -44,6 +45,37 @@ function getMenuInfo() {
 
     
   }
+
+
+  function addcustomer(details) {
+    return new Promise(async (resolve, reject) => {
+      let { name,email,password,cpassword } =
+        details;
+        var hashpassword=bcrypt.hashSync(password,10);
+        if(password==cpassword){
+  let sql = `INSERT INTO customer(name,email,password)
+      VALUES('${name}','${email}','${hashpassword}')`;
+                
+      db.query(sql, (error, results) => {
+        if (error) {
+          console.log(error.message);
+          resolve(false);
+        }
+        resolve(true);
+      
+        reject(new Error("from customer"));
+      });
+        }
+        else  {
+          resolve(false);
+          reject(new Error("password is wrong"));
+          console.log("confirm password is wrong")
+        }
+    });
+
+    
+  }
+
 
   function addtodaymenu(details) {
     return new Promise(async (resolve, reject) => {
@@ -159,6 +191,19 @@ function getMenuInfo() {
 
     });
   }
+  function getcustomer(email) {
+    return new Promise((resolve, reject) => {
+      console.log("getAdmin called");
+      let sql = `SELECT * FROM customer
+                          WHERE email = '${email}'
+                          LIMIT 1`;
+      db.query(sql, (error, results) => {
+        if (error) console.log(error.message);
+        resolve(results);
+        reject(new Error("from get admin"));
+      });
+    });
+  }
   
   module.exports = {
     getMenuInfo: getMenuInfo,
@@ -169,7 +214,9 @@ function getMenuInfo() {
     customer: customer,
     addCustomer:addCustomer,
     addcompliant:addcompliant,
-    complaint:complaint
+    complaint:complaint,
+    addcustomer: addcustomer,
+    getcustomer:getcustomer
 
   };
   

@@ -1,6 +1,8 @@
 const express=require("express");
 const config = require("./config/config")
 const app=express();
+const session=require("express-session")
+
 
 const helmet = require("helmet");
 app.use(helmet());
@@ -10,8 +12,13 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cors());
 
+app.use((session({
+secret:"ABCDefg",
+resave:false,
+saveUninitialized:true
 
 
+})))
 
 const today_menu = require("./routes/home");
 const todaymenu = require("./routes/todaymenu");
