@@ -1,6 +1,6 @@
 const mysql = require("mysql");
 var config = require("../config/config");
-//const bcrypt=require("bcrypt");
+const bcrypt=require("bcrypt");
 
 // Connect to Database
 let db = mysql.createConnection(config.databaseOptions);
@@ -13,7 +13,7 @@ db.connect((error) => {
 
 function getMenuInfo() {
     return new Promise((resolve, reject) => {
-      sql = `SELECT * FROM today_menu`;
+      sql = `SELECT * FROM today_menu `;
       db.query(sql, (error, result) => {
         if (error) console.log(error.message);
         resolve(result);
@@ -51,10 +51,12 @@ function getMenuInfo() {
     return new Promise(async (resolve, reject) => {
       let { name,email,password,cpassword } =
         details;
-       // var hashpassword=bcrypt.hashSync(password,10);
+        const salt=await bcrypt.genSalt(10);
+        hashpassword =await bcrypt.hash(password,salt);
+       
         if(password==cpassword){
   let sql = `INSERT INTO customer(name,email,password)
-      VALUES('${name}','${email}','${password}')`;
+      VALUES('${name}','${email}','${hashpassword}')`;
                 
       db.query(sql, (error, results) => {
         if (error) {
@@ -158,11 +160,13 @@ function getMenuInfo() {
   }
 
 
-  function customer() {
+  function customer(email) {
     return new Promise((resolve, reject) => {
-      sql = `SELECT * FROM customer`;
+      console.log(email);
+      sql = `SELECT * FROM customer where email = '${email}'`;
       db.query(sql, (error, result) => {
         if (error) console.log(error.message);
+        console.log(result)
         resolve(result);
         reject(new Error("from getCustomerInfo"));
       });
@@ -191,19 +195,20 @@ function getMenuInfo() {
 
     });
   }
-  function getcustomer(email) {
-    return new Promise((resolve, reject) => {
-      console.log("getAdmin called");
-      let sql = `SELECT * FROM customer
-                          WHERE email = '${email}'
-                          LIMIT 1`;
-      db.query(sql, (error, results) => {
-        if (error) console.log(error.message);
-        resolve(results);
-        reject(new Error("from get admin"));
-      });
-    });
-  }
+  // function getcustomer(email) {
+  //   return new Promise((resolve, reject) => {
+  //     console.log("getAdmin called" , email);
+  //     let sql = `SELECT * FROM customer 
+  //                         WHERE email = '${email}'
+  //                         LIMIT 1`;
+  //     db.query(sql, (error, results) => {
+  //       if (error) console.log(error.message);
+  //       resolve(results);
+  //       console.log(results.name)
+  //       reject(new Error("from get admin"));
+  //     });
+  //   });
+  // }
   
   module.exports = {
     getMenuInfo: getMenuInfo,
@@ -216,7 +221,7 @@ function getMenuInfo() {
     addcompliant:addcompliant,
     complaint:complaint,
     addcustomer: addcustomer,
-    getcustomer:getcustomer
+    //getcustomer:getcustomer
 
   };
   
