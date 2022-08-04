@@ -1,18 +1,15 @@
 import React from "react";
-import Heading from "../header/Heading";
-import Wrapper from "../helpers/Wrapper";
 import styled from "./MenuIntro.module.css";
-import { GiForkKnifeSpoon } from "react-icons/gi";
-import wings from "../../images/food.jpeg";
+// import wings from "../../images/food.jpeg";
 
 const MenuIntro = () => {
   return (
     <section className={styled["menu-intro"]}>
       <figure>
-        <img
+        {/* <img
           src={wings}
           alt="Hot wings created by timolina - www.freepik.com"
-        />
+        /> */}
       </figure>
     </section>
   );

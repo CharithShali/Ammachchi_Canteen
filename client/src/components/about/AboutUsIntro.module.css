@@ -1,5 +1,5 @@
 .intro-content {
-  padding: 2rem 0;
+  padding: 0px;
 }
 
 .intro-content figure {
@@ -8,7 +8,7 @@
 
 .intro-content figure img {
   width: 100%;
-  padding: 2rem 0;
+  padding: 0px;
 }
 
 /* Media Queries */

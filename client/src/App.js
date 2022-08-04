@@ -1,19 +1,20 @@
-import React from "react" ;
+import React from "react";
 import "./App.css";
-import About from "./components/about/About";
-import Contact from "./components/contact/Contact";
-import Footer from "./components/contact/Footer";
-import Header from "./components/header/Header";
-import Menu from "./components/menu/Menu";
+import Login from "./components/pages/LoginPage";
+import Home from "./components/pages/Home";
+import Seller from "./components/pages/SellerPage";
+import Signup from "./components/login/Signup";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      <Header />
-      <About />
-      <Menu />
-      <Contact />
-      <Footer />
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="seller" element={<Seller />} />
+        <Route path="login" element={<Login />} />
+        <Route path="sign-up" element={<Signup />} />
+      </Routes>
     </div>
   );
 }

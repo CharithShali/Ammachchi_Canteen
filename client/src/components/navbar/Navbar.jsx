@@ -1,79 +1,49 @@
-import React, { useEffect, useState } from "react";
-import styled from "./Navbar.module.css";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { HashLink as Link } from "react-router-hash-link";
+import logo from 'E:/Gobee 036/6th semi notes/Software Engineerong/Project files/ammachi/src/images/ammachi_logo2.png';
+import React, { useState } from 'react'
+import { FaBars, FaTimes } from 'react-icons/fa'
+import './Navbar.css'
 
 const Navbar = () => {
-  // state to manage the menu
-  const [showNav, setShowNav] = useState(false);
 
-  // function to toggle the menu
-  const handleMenu = () => setShowNav((showNav) => !showNav);
+    const [click, setClick] = useState(false)
+    const handleClick = () => setClick(!click)
 
-  //function to show the menu when the window resizes
-  useEffect(() => {
-    function showItems() {
-      if (window.innerWidth > 767) {
-        setShowNav(true);
-      } else if (showNav) {
-        setShowNav(false);
-      }
-    }
+    const closeMenu = () => setClick(false)
 
-    window.addEventListener("resize", showItems);
+    return (
+        <div className='header'>
+            <nav className='navbar'>
+                <p className='logo'>
+                    <img src={logo} alt='logo' />
+                </p>
+                <div className='hamburger' onClick={handleClick}>
+                    {click ? (<FaTimes size={30} style={{ color: '#ffffff' }} />)
+                        : (<FaBars size={30} style={{ color: '#ffffff' }} />)}
 
-    return () => window.removeEventListener("resize", showItems);
-  }, [showNav]);
+                </div>
+                <ul className={click ? "nav-menu active" : "nav-menu"}>
+                    <li className='nav-item'>
+                        <a href='#home' onClick={closeMenu}>Home</a>
+                    </li>
+                    <li className='nav-item'>
+                        <a href='#menu' onClick={closeMenu}>Menu</a>
+                    </li>
+                    <li className='nav-item'>
+                        <a href='#check' onClick={closeMenu}>My Orders</a>
+                    </li>
+                    <li className='nav-item'>
+                        <a href='#about' onClick={closeMenu}>About</a>
+                    </li>
+                    <li className='nav-item'>
+                        <a href='#contact' onClick={closeMenu}>Contact</a>
+                    </li>
+                    <li className='nav-item'>
+                        <a href='login' onClick={closeMenu}>Login</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    )
+}
 
-  useEffect(() => {
-    //if the window is greater then 767 when the component first mounts, show the menu
-    if (window.innerWidth > 767) {
-      setShowNav(true);
-    }
-
-    return () => {
-      //if the window is less then 767 when the component unmounts, hide the menu
-      if (window.innerWidth < 767) {
-        setShowNav(false);
-      }
-    };
-  }, []);
-
-  return (
-    <nav className={styled.navbar}>
-      <p>AMMACHI</p>
-
-      <div onClick={handleMenu} className={styled.icon}>
-        <GiHamburgerMenu size="25px" style={{ color: "var(--white)" }} />
-      </div>
-
-      {/* show menu is showNav is true */}
-      {showNav && (
-        <ul className={styled.links}>
-          <li>
-            <Link to="#home" smooth>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="#about" smooth>
-              About Us
-            </Link>
-          </li>
-          <li>
-            <Link to="#menu" smooth>
-              Order
-            </Link>
-          </li>
-          <li>
-            <Link to="#contact" smooth>
-              Contact
-            </Link>
-          </li>
-        </ul>
-      )}
-    </nav>
-  );
-};
-
-export default Navbar;
+export default Navbar

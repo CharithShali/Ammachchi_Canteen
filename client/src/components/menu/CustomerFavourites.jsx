@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "./CustomerFavourites.module.css";
-import Button from "../button/Button";
+import Controls from "../../components/button/Controls";
 import Heading from "../header/Heading";
 import Wrapper from "../helpers/Wrapper";
+import Popup from "../../components/popup/Popup";
+import Order from "../popup/Order";
 import { favorites } from "./favourites";
 
 const CustomerFavourites = () => {
+
+  const [recordForEdit, setRecordForEdit] = useState(null)
+  const [openPopup, setOpenPopup] = useState(false)
+  const [openSPopup, setOpenSPopup] = useState(false)
+
+  const addValue = () => {
+    setOpenSPopup(true)
+    setOpenPopup(false)
+}
+
+  const openInPopup = id => {
+    setRecordForEdit(id)
+    setOpenPopup(true)
+ }
+
   const text = (
     <>
       Available <span>Foods</span>
@@ -21,15 +38,18 @@ const CustomerFavourites = () => {
 
         <div>
           <p className={styled.name}> {item.name}</p>
-
           <div>
             <p className={styled.price}>Rs {item.price}</p>
-            <Button>order</Button>
+            <Controls.OrderButton
+                    text="Order"
+                    onClick={() => { setOpenPopup(true); openInPopup(item.id); }}
+              />
           </div>
         </div>
       </article>
     );
   });
+
   return (
     <section className={styled.favourites}>
       <Wrapper>
@@ -42,6 +62,21 @@ const CustomerFavourites = () => {
 
         <section className={styled["faves-container"]}>{faves}</section>
       </Wrapper>
+      <Popup
+            title="Order"
+            openPopup={openPopup}
+            setOpenPopup={setOpenPopup}
+      >
+        <Order
+              recordForEdit={recordForEdit}
+              addValue={addValue} 
+        />
+      </Popup>
+      <Popup
+          title = "Your order has been placed successfully"
+          openPopup={openSPopup}
+          setOpenPopup={setOpenSPopup}
+      ></Popup>
     </section>
   );
 };

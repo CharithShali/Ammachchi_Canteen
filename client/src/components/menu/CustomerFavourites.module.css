@@ -46,6 +46,23 @@
   font-size: 1.1rem;
 }
 
+.input[type=number]:focus {
+  border: 3px solid #555;
+  color: var(--dark-green);
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 10px;
+  width: 100px;
+}
+
+.input[type=number] {
+  color: var(--dark-green);
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 10px;
+  width: 100px;
+}
+
 .price {
   color: var(--dark-green);
   font-weight: bold;

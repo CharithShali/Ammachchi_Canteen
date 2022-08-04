@@ -21,13 +21,18 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="#about" smooth>
-                  About Us
+                <Link to="#menu" smooth>
+                  Today Menu
                 </Link>
               </li>
               <li>
-                <Link to="#menu" smooth>
-                  Order
+                <Link to="#check" smooth>
+                  My Orders
+                </Link>
+              </li>
+              <li>
+                <Link to="#about" smooth>
+                  About Us
                 </Link>
               </li>
               <li>

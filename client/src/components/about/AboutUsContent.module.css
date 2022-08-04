@@ -1,5 +1,6 @@
 .plate {
   width: 100%;
+  height: fit-content;
 }
 
 .plate img {
