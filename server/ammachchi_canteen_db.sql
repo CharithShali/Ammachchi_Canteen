@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2022 at 05:26 PM
+-- Generation Time: Aug 04, 2022 at 05:27 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -47,6 +47,16 @@ CREATE TABLE `complaint` (
   `customer_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `complaint`
+--
+
+INSERT INTO `complaint` (`id`, `C_date`, `subject`, `description`, `customer_id`) VALUES
+(1, '0000-00-00', 'new Complaint', 'ddd', 1),
+(2, '2019-07-04', 'new Complaint', 'ddd', 1),
+(3, '2019-07-04', 'new Complaint', 'ddd', 1),
+(4, '2019-07-04', 'new Complaint', 'ddd', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -60,6 +70,16 @@ CREATE TABLE `customer` (
   `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`id`, `name`, `email`, `password`) VALUES
+(1, 'sangeetha', 'ckks@dmdm', 'ddd'),
+(49, 'kavindya prr', 'dddeed1qq111@dmdmwww', '$2b$10$GbwxSTIzWufa9Sd8OoMa4uVV0jLxi9wbk45ROs69DSX'),
+(50, 'kavindya prr', 'dddeed1qq111@dmdmwww', '$2b$10$9G3nvZIjBOBuswMriHwvd.G/3SCsOfO3Zqu9gKbOXri'),
+(51, 'kavindya prr', 'dddeed1qq111@dmdmwww', '$2b$10$gykRsGO65Mggy2jsScAcSeKT.U5ojUKZ3ZoZbyCBfHp');
+
 -- --------------------------------------------------------
 
 --
@@ -69,7 +89,9 @@ CREATE TABLE `customer` (
 CREATE TABLE `food_item` (
   `id` int(5) NOT NULL,
   `seller_id` int(5) NOT NULL,
-  `name` varchar(50) NOT NULL
+  `name` varchar(50) NOT NULL,
+  `image` text NOT NULL,
+  `price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -106,6 +128,33 @@ CREATE TABLE `seller` (
   `name` varchar(50) NOT NULL,
   `phone_number` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `seller`
+--
+
+INSERT INTO `seller` (`id`, `name`, `phone_number`) VALUES
+(1, 'undefined', 0),
+(2, 'undefined', 0),
+(3, 'undefined', 0),
+(4, 'undefined', 0),
+(5, 'undefined', 0),
+(6, 'undefined', 0),
+(7, 'undefined', 0),
+(8, 'undefined', 0),
+(9, 'undefined', 0),
+(10, 'undefined', 0),
+(11, 'ddd', 65533),
+(12, 'undefined', 0),
+(13, 'undefined', 0),
+(14, 'undefined', 0),
+(15, 'ffff', 4444),
+(16, 'ffff', 4444),
+(17, 'rrr', 4444),
+(18, 'rrr', 4444),
+(19, 'rrr', 4444),
+(20, 'rrr', 4444),
+(21, 'rrr', 4444);
 
 -- --------------------------------------------------------
 
@@ -190,19 +239,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `complaint`
 --
 ALTER TABLE `complaint`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `food_item`
 --
 ALTER TABLE `food_item`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -214,13 +263,13 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `seller`
 --
 ALTER TABLE `seller`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `today_menu`
 --
 ALTER TABLE `today_menu`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
