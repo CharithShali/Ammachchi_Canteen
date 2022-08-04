@@ -1,6 +1,7 @@
 const mysql = require("mysql");
 var config = require("../config/config");
 const bcrypt=require("bcrypt");
+const jwt =require('jsonwetoken');
 
 // Connect to Database
 let db = mysql.createConnection(config.databaseOptions);
