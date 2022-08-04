@@ -1,9 +1,11 @@
 const express = require("express");
 const dbOperations = require("../controller/dbOperations")
 const router = express.Router();
+const config = require("../config/config");
 module.exports = router;
+
 const jwt = require("jsonwebtoken");
-const bcrypt=require("bcrypt");
+//const bcrypt=require("bcrypt");
 
 // Connect to Database
 module.exports = router;
@@ -37,8 +39,8 @@ router.post("/login", async (req, res) => {
     if (customer.length === 0) return res.json({ error: "admin not found" });
     else {
       console.log(password)
-      bcrypt.compare(password, customer[0].password).then((match) => {
-        if (!match) return res.json({ error: "Wrong password" });
+      //bcrypt.compare(password, customer[0].password).then((match) => //{
+        if (!password==customer[0].password) return res.json({ error: "Wrong password" });
         else {
           jwt.sign(
             { id: customer[0].id, name:customer[0].name },
@@ -53,7 +55,7 @@ router.post("/login", async (req, res) => {
             }
           );
         }
-      });
+     // });
     }
   } catch (e) {
     console.log(e);

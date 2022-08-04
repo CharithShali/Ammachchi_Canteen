@@ -1,6 +1,6 @@
 const mysql = require("mysql");
 var config = require("../config/config");
-const bcrypt=require("bcrypt");
+//const bcrypt=require("bcrypt");
 
 // Connect to Database
 let db = mysql.createConnection(config.databaseOptions);
@@ -51,10 +51,10 @@ function getMenuInfo() {
     return new Promise(async (resolve, reject) => {
       let { name,email,password,cpassword } =
         details;
-        var hashpassword=bcrypt.hashSync(password,10);
+       // var hashpassword=bcrypt.hashSync(password,10);
         if(password==cpassword){
   let sql = `INSERT INTO customer(name,email,password)
-      VALUES('${name}','${email}','${hashpassword}')`;
+      VALUES('${name}','${email}','${password}')`;
                 
       db.query(sql, (error, results) => {
         if (error) {
