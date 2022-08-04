@@ -20,10 +20,6 @@ saveUninitialized:true
 
 })))
 
-
-
-
-
 const today_menu = require("./routes/home");
 const todaymenu = require("./routes/todaymenu");
 const fooditem = require("./routes/fooditem");
