@@ -51,9 +51,12 @@ function getMenuInfo() {
     return new Promise(async (resolve, reject) => {
       let { name,email,password,cpassword } =
         details;
+        //console.log(password);
         const salt=await bcrypt.genSalt(10);
         hashpassword =await bcrypt.hash(password,salt);
-       
+       console.log(
+        password,   hashpassword
+       );
         if(password==cpassword){
   let sql = `INSERT INTO customer(name,email,password)
       VALUES('${name}','${email}','${hashpassword}')`;
@@ -174,27 +177,6 @@ function getMenuInfo() {
   }
 
 
-  function addCustomer(details) {
-    return new Promise(async (resolve, reject) => {
-      let { name,email,password} =
-        details;
-        console.log(name);
-  
-  let sql = `INSERT INTO customer(name,email,password)
-      VALUES('${name}','${email}','${password}')`;
-                
-      db.query(sql, (error, results) => {
-        if (error) {
-          console.log(error.message);
-          resolve(false);
-        }
-        resolve(true);
-
-        reject(new Error("from addcustomer"));
-      });
-
-    });
-  }
   // function getcustomer(email) {
   //   return new Promise((resolve, reject) => {
   //     console.log("getAdmin called" , email);
@@ -217,7 +199,7 @@ function getMenuInfo() {
     addtodaymenu:addtodaymenu,
     addfooditem:addfooditem,
     customer: customer,
-    addCustomer:addCustomer,
+   // addCustomer:addCustomer,
     addcompliant:addcompliant,
     complaint:complaint,
     addcustomer: addcustomer,
