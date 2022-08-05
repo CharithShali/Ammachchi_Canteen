@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "./CustomerFavourites.module.css";
-// import Button from "../button/Button";
+import Button from "../button/SellerButton";
 import Heading from "../header/Heading";
 import Wrapper from "../helpers/Wrapper";
 import { foods } from "./foods";
@@ -11,12 +11,6 @@ const Seller = () => {
       All <span>Foods</span>
     </>
   );
-
-  const [Active, setActive] = useState(true);
-
-  const handleClick = () => {
-    setActive(current => !current);
-  };
 
   const faves = foods.map((item) => {
     return (
@@ -29,15 +23,7 @@ const Seller = () => {
           <p className={styled.name}> {item.name}</p>
           <div>
             <p className={styled.price}>Rs {item.price}</p>
-            <button
-              style={{
-                backgroundColor: Active ? 'green' : 'salmon',
-                color: Active ? 'white' : '',
-              }}
-              onClick={handleClick}
-            >
-              {Active ? 'Available' : 'Not Available'}
-            </button>
+            <Button > </Button>
           </div>
         </div>
       </article>
