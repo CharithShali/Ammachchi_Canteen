@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Controls from "../button/Controls";
 import { favorites } from "../menu/favourites";
 import styled from "../menu/CustomerFavourites.module.css";
@@ -27,7 +27,6 @@ const Order = (props) => {
 
     const {
       values,
-      // setValues,
       errors,
       setErrors,
       handleInputChange,
@@ -40,9 +39,6 @@ const Order = (props) => {
       }
        
     }
-
-    useEffect(() => {
-    }, [recordForEdit])
 
     const food = favorites
     .filter((item) => item.id === recordForEdit)

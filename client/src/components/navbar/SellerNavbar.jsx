@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Navbar.css";
-import logo from 'E:/Gobee 036/6th semi notes/Software Engineerong/Project files/ammachi/src/images/ammachi_logo2.png';
+import logo from '../../images/ammachi_logo2.png';
 import { FaBars, FaTimes } from 'react-icons/fa'
 
 const SellerNavbar = () => {

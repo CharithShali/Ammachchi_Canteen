@@ -1,21 +1,31 @@
 import React, { useState } from "react";
+// import { foods } from "../menu/foods";
 
-const SellerButton = (props, Color, Colors) => {
+const SellerButton = (props) => {
 
-  const [color, setColor] = useState(Color);
+  const [Active, setActive] = useState(false);
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    setColor(Colors[Math.floor(Math.random() * Colors.length)]);
+  const handleClick = () => {
+    setActive(current => !current);
   };
 
-  const style = {
-    backgroundColor: color
-  };
 
   return (
-    <button onClick={handleChange} style={style}>
-      {props.children}
+    <button 
+      style={{
+        backgroundColor: Active ? 'green' : 'salmon',
+        color: Active ? 'white' : '',
+        border: 'none',
+        borderRadius: '10px',
+        overflow: 'hidden',
+        textTransform: 'uppercase',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        cursor: 'pointer',
+        }}
+      onClick={handleClick}
+    >
+      {Active ? 'Available' : 'Not Available'}
     </button>
   );
 };
