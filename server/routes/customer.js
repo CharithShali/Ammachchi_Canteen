@@ -33,13 +33,22 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   let customer= await dbOperations.customer(email);
-  console.log('dddddddd',customer[0].password);
-  //if(!customer) return res.status(400).send('Invalid email or password.');
-  const validPassword=await bcrypt.compare(password,customer[0].password);
-  console.log(password)
-console.log(validPassword);
-  if(!validPassword) return res.status(400).send('Invalid email or password.');
-  res.send(true);
+  //console.log('dddddddd',customer[0].password);
+  if(!customer) return res.status(400).send('Invalid email')
+  if(customer[0].password==password) return res.status(200).send('logged in')
+  
+  // bcrypt.compare(password, customer[0].password, function(err, result) {
+  //   if (err) { throw (err); }
+  //   console.log(result);
+  // });
+
+
+//   const validPassword=await bcrypt.compare(password,customer[0].password);
+//   console.log(password)
+// console.log(validPassword);
+//   if(validPassword) return res.status(400).send('Invalid email or password.');
+//   const token=jwt.sign({_id:customer._id},'jwtprivatekey');
+//   res.send(token);
   
 });
 

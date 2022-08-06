@@ -1,8 +1,7 @@
 const express=require("express");
-const config = require("./config/config")
 const app=express();
 const session=require("express-session")
-
+const config=require('config')
 
 const helmet = require("helmet");
 app.use(helmet());
@@ -16,9 +15,12 @@ app.use((session({
 secret:"ABCDefg",
 resave:false,
 saveUninitialized:true
-
-
 })))
+
+// if(!config.get('jwtPrivateKey')){
+// console.log('Fatal error : jwtprivate key is not defined.');
+// process.exit(1);
+// }
 
 const today_menu = require("./routes/home");
 const todaymenu = require("./routes/todaymenu");
@@ -26,6 +28,7 @@ const fooditem = require("./routes/fooditem");
 const seller = require("./routes/seller");
 const complaint = require("./routes/complaint");
 const customer = require("./routes/customer");
+const admin = require("./routes/admin");
 //const addseller= require("./routes/addseller");
 
 //const foods = require("./routes/sellers");
@@ -40,6 +43,7 @@ app.use("/api/todaymenu", todaymenu);
 app.use("/api/fooditem",fooditem);
 app.use("/api/complaint", complaint);
 app.use("/api/customer", customer);
+app.use("/api/admin", admin)
 //app.use("/api/addseller", addseller);
 
 

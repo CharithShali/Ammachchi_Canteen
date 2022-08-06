@@ -1,7 +1,7 @@
 const mysql = require("mysql");
 var config = require("../config/config");
 const bcrypt=require("bcrypt");
-const jwt =require('jsonwetoken');
+
 
 // Connect to Database
 let db = mysql.createConnection(config.databaseOptions);
@@ -26,12 +26,11 @@ function getMenuInfo() {
 
   function addSeller(details) {
     return new Promise(async (resolve, reject) => {
-      let { name,phone_number } =
+      let { name,phone_number,password } =
         details;
         console.log(name);
-  
-  let sql = `INSERT INTO seller(name,phone_number)
-      VALUES('${name}','${phone_number}')`;
+  let sql = `INSERT INTO seller(name,phone_number,password)
+      VALUES('${name}','${phone_number}','${password}')`;
                 
       db.query(sql, (error, results) => {
         if (error) {
@@ -53,14 +52,18 @@ function getMenuInfo() {
       let { name,email,password,cpassword } =
         details;
         //console.log(password);
-        const salt=await bcrypt.genSalt(10);
-        hashpassword =await bcrypt.hash(password,salt);
-       console.log(
-        password,   hashpassword
-       );
+      //   const salt=await bcrypt.genSalt(10);
+      //   hashpassword =await bcrypt.hash(password,salt);
+      //  console.log(
+      //   password,   hashpassword
+      //  );
+
+      // bcrypt.hash(password, 10, function(err, hash) {
+      //   if (err) { throw (err); }
+
         if(password==cpassword){
   let sql = `INSERT INTO customer(name,email,password)
-      VALUES('${name}','${email}','${hashpassword}')`;
+      VALUES('${name}','${email}','${password}')`;
                 
       db.query(sql, (error, results) => {
         if (error) {
@@ -77,9 +80,9 @@ function getMenuInfo() {
           reject(new Error("password is wrong"));
           console.log("confirm password is wrong")
         }
-    });
+    //});
 
-    
+  });
   }
 
 
@@ -176,6 +179,35 @@ function getMenuInfo() {
       });
     });
   }
+  function getseller(name) {
+    return new Promise((resolve, reject) => {
+      console.log(name);
+      sql = `SELECT * FROM seller where name = '${name}'`;
+      db.query(sql, (error, result) => {
+        if (error) console.log(error.message);
+        console.log(result)
+        resolve(result);
+        reject(new Error("from getCustomerInfo"));
+      });
+    });
+
+    
+  }
+  function admin(name) {
+    return new Promise((resolve, reject) => {
+      console.log(name);
+      sql = `SELECT * FROM admin where name = '${name}'`;
+      db.query(sql, (error, result) => {
+        if (error) console.log(error.message);
+        console.log(result)
+        resolve(result);
+        reject(new Error("from getCustomerInfo"));
+      });
+    });
+
+    
+  }
+  
 
 
   // function getcustomer(email) {
@@ -204,6 +236,8 @@ function getMenuInfo() {
     addcompliant:addcompliant,
     complaint:complaint,
     addcustomer: addcustomer,
+    getseller:getseller,
+    admin:admin
     //getcustomer:getcustomer
 
   };
