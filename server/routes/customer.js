@@ -40,7 +40,7 @@ router.post("/add", async (req, res) => {
 
       try {
         const user = await dbOperations.customer(email);
-        if (user.length === 1) res.send("email already exists");
+        if (user.length === 1) res.status(400).send("email already exists");
         else {
           const client = {
             ...value,
@@ -48,18 +48,19 @@ router.post("/add", async (req, res) => {
           };
           const reg = await dbOperations.addcustomer(client);
           const newUser = await dbOperations.customer(email);
-          jwt.sign(
-            { id: newUser[0].id, name: newUser[0].name },
-            config.get("jwtPrivateKey"),
-            (err, token) => {
-              if (err) return console.log(err.message);
-              res.json({
-                token,
-                name: user[0].name + " " + user[0].name,
-                id: user[0].id,
-              });
-            }
-          );
+          res.status(200).send(newUser);
+          // jwt.sign(
+          //   { id: newUser[0].id, name: newUser[0].name },
+          //   config.get("jwtPrivateKey"),
+          //   (err, token) => {
+          //     if (err) return console.log(err.message);
+          //     res.json({
+          //       token,
+          //       name: user[0].name + " " + user[0].name,
+          //       id: user[0].id,
+          //     });
+          //   }
+          // );
         }
       } catch (err) {
         res.send("Registering to database " + err.message);
@@ -80,7 +81,9 @@ router.post("/login", async (req, res) => {
   let customer= await dbOperations.customer(email);
   //console.log('dddddddd',customer[0].password);
   if(!customer) return res.status(400).send('Invalid email')
-  if(customer[0].password==password) return res.status(200).send('logged in')
+  if(customer[0].password==password) {
+    res.status(200).send(customer);
+  }
   
   // bcrypt.compare(password, customer[0].password, function(err, result) {
   //   if (err) { throw (err); }

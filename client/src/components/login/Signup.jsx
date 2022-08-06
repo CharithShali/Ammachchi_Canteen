@@ -4,8 +4,8 @@ import Button from "../button/Button";
 import Background from "../helpers/Background";
 import darkGreyBg from "../../images/dark-grey-bg.png";
 import axios from 'axios';
-// import { withRouter } from "react-router";
 import Swal from 'sweetalert2';
+// import { withRouter } from "react-router";
 
 class Signup extends Component {
 
@@ -13,6 +13,7 @@ class Signup extends Component {
     super(props);
 
     this.state = {
+      id:'',
       name:'',
       email:'',
       password:'',
@@ -42,6 +43,9 @@ class Signup extends Component {
                     .then(response => {
                       
                         if (response.status === 200) {
+                          this.setState({
+                            id:response.data[0].id,
+                          })
                             Swal.fire({
                                 title: 'Sign up Successful',
                                 type: 'success',
@@ -51,7 +55,7 @@ class Signup extends Component {
                                 if (result.value) {
                                     // sessionStorage.setItem('userToken', response.data.token);
                                     // sessionStorage.setItem('tokenTime', response.data.tokenLifeInSeconds);
-                                    window.location.assign('/');
+                                    window.location.assign('/customer/'+this.state.id);
                                 }
                             });
                         } else {

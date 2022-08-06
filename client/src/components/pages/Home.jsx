@@ -2,16 +2,14 @@ import React from "react";
 import About from "../about/About";
 import Contact from "../contact/Contact";
 import Footer from "../contact/Footer";
-import Header from "../header/Header";
+import Header from "../header/DemoHeader";
 import Menu from "../menu/DemoMenu";
-import Check from "../tables/CheckOrder";
 
 const Home = () => {
   return (
     <section id="home">
       <Header />
       <Menu />
-      <Check />
       <About />
       <Contact />
       <Footer />

@@ -1,16 +1,75 @@
-import React from "react";
+import React, { Component } from "react";
 import './Login.css';
 import loginImg from "../../images/ammachi_logo.png";
 import Button from "../button/Button";
 import Background from "../helpers/Background";
 import darkGreyBg from "../../images/dark-grey-bg.png";
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
-const Login = () => {
+class Login extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      id:'',
+      email:'',
+      password:'',
+    }
+
+    this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.onValueChange = this.onValueChange.bind(this);
+  }
+
+    onValueChange(e){
+        this.setState({
+          [e.target.name] : e.target.value
+        })
+    }
+    
+    onFormSubmit(e){
+      e.preventDefault();
+      const email = this.state.email;
+      const password = this.state.password;
+
+      const user = {email,password};
+
+        axios.post('http://localhost:3001/api/customer/login', user)
+                    .then(response => {
+                      
+                        if (response.status === 200) {
+                          this.setState({
+                            id:response.data[0].id,
+                          })
+                            Swal.fire({
+                                title: 'Sign up Successful',
+                                type: 'success',
+                                confirmButtonText: 'OK!',
+                            }).then((result) => {
+
+                                if (result.value) {
+                                    // sessionStorage.setItem('userToken', response.data.token);
+                                    // sessionStorage.setItem('tokenTime', response.data.tokenLifeInSeconds);
+                                    window.location.assign('/customer/'+this.state.id);
+                                }
+                            });
+                        } else {
+                            Swal.fire('Oops...', 'Invalid Password or User Id', 'error');
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    });
+
+  }
+
+  render() {
 
     return (
       <section id="login">
       <Background url={darkGreyBg}>
-        <form id="login" >
+        <form id="login" onSubmit={this.onFormSubmit}>
         <div className="base-container" >
           <div className="header1"> Sign In
           </div>
@@ -22,16 +81,16 @@ const Login = () => {
               <div className="form-group">
                 <label htmlFor="email">Email</label>
                 <input type="text" name="email" placeholder="enter your email address" className="form-control form-control-lg" 
-                // onChange={this.onValueChange}
-                // value={this.state.email}
+                onChange={this.onValueChange}
+                value={this.state.email}
                 required
                 />
               </div>
               <div className="form-group">
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" placeholder="enter your password" className="form-control form-control-lg" 
-                // onChange={this.onValueChange}
-                // value={this.state.password}
+                onChange={this.onValueChange}
+                value={this.state.password}
                 required
                 />
               </div>
@@ -60,6 +119,7 @@ const Login = () => {
       </section>
        
       );
+    }
 }
 
-export default Login
+export default Login;

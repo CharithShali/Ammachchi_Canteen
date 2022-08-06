@@ -39,7 +39,7 @@ router.post("/login", async (req, res) => {
   let seller= await dbOperations.getseller(name);
   //console.log('dddddddd',customer[0].password);
   if(!seller) return res.status(400).send('Invalid email')
-  if(seller[0].password==password) return res.status(200).send('logged in')
+  if(seller[0].password==password) return res.status(200).send(seller)
   
   // bcrypt.compare(password, customer[0].password, function(err, result) {
   //   if (err) { throw (err); }

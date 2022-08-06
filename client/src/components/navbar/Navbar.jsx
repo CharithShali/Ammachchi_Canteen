@@ -38,7 +38,7 @@ const Navbar = () => {
                         <a href='#contact' onClick={closeMenu}>Contact</a>
                     </li>
                     <li className='nav-item'>
-                        <a href='login' onClick={closeMenu}>Login</a>
+                        <a href='/' onClick={closeMenu}>Logout</a>
                     </li>
                 </ul>
             </nav>

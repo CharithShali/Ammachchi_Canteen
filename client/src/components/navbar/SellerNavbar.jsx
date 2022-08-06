@@ -21,14 +21,12 @@ const SellerNavbar = () => {
 
                 </div>
                 <ul className={click ? "nav-menu1 active" : "nav-menu1"}>
-                    <h1 className="nav-item1" style={{ fontWeight: 'bold', fontSize: '20px' }}>
-                      Hello Leela
-                    </h1>
+                
                     <li className='nav-item1'>
                         <a href='#order' onClick={closeMenu}>Check Order</a>
                     </li>
                     <li className='nav-item1'>
-                        <a href='#logout' onClick={closeMenu}>Logout</a>
+                        <a href='/sellerlogin' onClick={closeMenu}>Logout</a>
                     </li>
                 </ul>
             </nav>

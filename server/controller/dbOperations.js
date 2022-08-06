@@ -62,10 +62,6 @@ function getMenuInfo() {
 
       // bcrypt.hash(password, 10, function(err, hash) {
       //   if (err) { throw (err); }
-
-      
- 
-
       
   let sql = `INSERT INTO customer(name,email,password)
       VALUES('${name}','${email}','${password}')`;
@@ -80,10 +76,8 @@ function getMenuInfo() {
       
         reject(new Error("from customer"));
       });
-        
-       
+            
     //});
-
   });
   
   }
