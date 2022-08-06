@@ -1,6 +1,8 @@
 const mysql = require("mysql");
 var config = require("../config/config");
 const bcrypt=require("bcrypt");
+const { join } = require("path");
+const Joi = require("joi");
 
 
 // Connect to Database
@@ -61,9 +63,13 @@ function getMenuInfo() {
       // bcrypt.hash(password, 10, function(err, hash) {
       //   if (err) { throw (err); }
 
-        if(password==cpassword){
+      
+ 
+
+      
   let sql = `INSERT INTO customer(name,email,password)
       VALUES('${name}','${email}','${password}')`;
+      
                 
       db.query(sql, (error, results) => {
         if (error) {
@@ -74,15 +80,12 @@ function getMenuInfo() {
       
         reject(new Error("from customer"));
       });
-        }
-        else  {
-          resolve(false);
-          reject(new Error("password is wrong"));
-          console.log("confirm password is wrong")
-        }
+        
+       
     //});
 
   });
+  
   }
 
 
@@ -179,6 +182,7 @@ function getMenuInfo() {
       });
     });
   }
+  
   function getseller(name) {
     return new Promise((resolve, reject) => {
       console.log(name);

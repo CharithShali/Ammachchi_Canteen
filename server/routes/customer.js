@@ -4,6 +4,8 @@ const router = express.Router();
 module.exports = router;
 const jwt = require("jsonwebtoken");
 const bcrypt=require("bcrypt");
+const Joi=require('joi')
+const schema = Joi.any()
 
 // Connect to Database
 module.exports = router;
@@ -19,15 +21,57 @@ module.exports = router;
 // });
 
 router.post("/add", async (req, res) => {
-  let details = req.body;
+  console.log("register server called");
   try {
-    let data = await dbOperations.addcustomer(details);
-    if (data) return res.status(200).json({ msg: "customer added" });
-    res.status(400).json({ error: "FATAL ERROR: customer not added" });
-  } catch (e) {
-    console.log(e.message);
+    const schema = Joi.object({
+     
+      name: Joi.string().min(3).required(),
+      email: Joi.string().email({
+        minDomainSegments: 2,
+        tlds: { allow: ["com", "net"] },
+      }),
+      password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
+    });
+    try {
+      console.log("second try block");
+      const value = await schema.validateAsync(req.body);
+      let { password, email } = value;
+
+      try {
+        const user = await dbOperations.customer(email);
+        if (user.length === 1) res.send("email already exists");
+        else {
+          const client = {
+            ...value,
+           // password: await bcrypt.hash(password, 10),
+          };
+          const reg = await dbOperations.addcustomer(client);
+          const newUser = await dbOperations.customer(email);
+          jwt.sign(
+            { id: newUser[0].id, name: newUser[0].name },
+            config.get("jwtPrivateKey"),
+            (err, token) => {
+              if (err) return console.log(err.message);
+              res.json({
+                token,
+                name: user[0].name + " " + user[0].name,
+                id: user[0].id,
+              });
+            }
+          );
+        }
+      } catch (err) {
+        res.send("Registering to database " + err.message);
+      }
+    } catch (err) {
+      res.send("Schema validation " + err.message);
+    }
+  } catch (err) {
+    res.send("Schema " + err.message);
   }
 });
+
+
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
