@@ -3,7 +3,9 @@ import './Login.css';
 import loginImg from "../../images/ammachi_logo.png";
 import Button from "../button/Button";
 
+
 const Login = () => {
+
     return (
         <form id="login" >
         <div className="base-container" >
@@ -43,6 +45,12 @@ const Login = () => {
           <p className="forgot-password text-right">
             No need to Login? <a href="/">Back to home</a>
           </p>
+          {/* <p className="forgot-password text-right">
+              Admin? <a href="adminlogin">Login Here</a>
+          </p>
+          <p className="forgot-password text-right">
+            Seller? <a href="sellerlogin">Login Here</a>
+          </p> */}
         </div>
         </form>
        
