@@ -31,6 +31,7 @@ router.post("/add", async (req, res) => {
         tlds: { allow: ["com", "net"] },
       }),
       password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
+      cpassword: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
     });
     try {
       console.log("second try block");
