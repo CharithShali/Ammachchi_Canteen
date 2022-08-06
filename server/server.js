@@ -44,9 +44,12 @@ app.use("/api/fooditem",fooditem);
 app.use("/api/complaint", complaint);
 app.use("/api/customer", customer);
 app.use("/api/admin", admin)
+const bcrypt = require("bcrypt");
+
 //app.use("/api/addseller", addseller);
 
 
+  
 app.listen(3001,()=>{
 console.log("server running on port 3001");
 
