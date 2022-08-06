@@ -3,10 +3,10 @@ import About from "../about/About";
 import Contact from "../contact/Contact";
 import Footer from "../contact/Footer";
 import Header from "../header/Header";
-import Menu from "../menu/DemoMenu";
+import Menu from "../menu/Menu";
 import Check from "../tables/CheckOrder";
 
-const Home = () => {
+const Customer = () => {
   return (
     <section id="home">
       <Header />
@@ -19,4 +19,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Customer;

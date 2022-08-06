@@ -5,14 +5,14 @@ import Button from "../button/Button";
 import Background from "../helpers/Background";
 import darkGreyBg from "../../images/dark-grey-bg.png";
 
-const Login = () => {
+const AdminLogin = () => {
 
     return (
-      <section id="login">
+    <section id="adminlogin">
       <Background url={darkGreyBg}>
-        <form id="login" >
+        <form id="adminlogin" >
         <div className="base-container" >
-          <div className="header1"> Sign In
+          <div className="header1"> Admin Login
           </div>
           <div className="content">
             <div className="image">
@@ -20,8 +20,8 @@ const Login = () => {
             </div>
             <div className="form">
               <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input type="text" name="email" placeholder="enter your email address" className="form-control form-control-lg" 
+                <label htmlFor="username">User name</label>
+                <input type="text" name="username" placeholder="enter your username" className="form-control form-control-lg" 
                 // onChange={this.onValueChange}
                 // value={this.state.email}
                 required
@@ -43,23 +43,19 @@ const Login = () => {
           </Button>
           </div>
           <p className="forgot-password text-right">
-              New to the website? <a href="sign-up">Sign Up?</a>
-          </p>
-          <p className="forgot-password text-right">
             No need to Login? <a href="/">Back to home</a>
-          </p>
-          <p className="forgot-password text-right">
-              Admin? <a href="adminlogin">Login Here</a>
           </p>
           <p className="forgot-password text-right">
             Seller? <a href="sellerlogin">Login Here</a>
           </p>
+          <p className="forgot-password text-right">
+            Customer? <a href="login">Login Here</a>
+          </p>
         </div>
         </form>
-        </Background>
-      </section>
-       
+       </Background>
+       </section>
       );
 }
 
-export default Login
+export default AdminLogin
