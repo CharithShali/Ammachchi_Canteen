@@ -85,11 +85,10 @@ function getMenuInfo() {
 
   function addtodaymenu(details) {
     return new Promise(async (resolve, reject) => {
-      let { food_item_id,name } =
+      let { food_item_id} =
         details;
         console.log(name);
-  let sql = `INSERT INTO today_menu(food_item_id,name)
-      VALUES('${food_item_id}','${name}')`;
+  let sql = `UPDATE food_item SET available = 1 where id = '${food_item_id}'`;
                 
       db.query(sql, (error, results) => {
         if (error) {
