@@ -193,7 +193,7 @@ function getMenuInfo() {
     return new Promise((resolve, reject) => {
       console.log(id);
       sql = 
-      `SELECT food_item.name, orders.quantity, orders.total,orders.status
+      `SELECT orders.id, food_item.name, orders.quantity, orders.total,orders.status
       FROM orders
       INNER JOIN customer
       ON orders.customer_id = customer.id
