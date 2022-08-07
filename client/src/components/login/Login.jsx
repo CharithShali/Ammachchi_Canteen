@@ -43,7 +43,7 @@ class Login extends Component {
                             id:response.data[0].id,
                           })
                             Swal.fire({
-                                title: 'Sign up Successful',
+                                title: 'Login Successful',
                                 type: 'success',
                                 confirmButtonText: 'OK!',
                             }).then((result) => {

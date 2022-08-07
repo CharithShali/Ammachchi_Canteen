@@ -23,7 +23,7 @@ const SellerNavbar = () => {
                 <ul className={click ? "nav-menu1 active" : "nav-menu1"}>
                 
                     <li className='nav-item1'>
-                        <a href='#order' onClick={closeMenu}>Check Order</a>
+                        <a href='#manage' onClick={closeMenu}>Check Order</a>
                     </li>
                     <li className='nav-item1'>
                         <a href='/sellerlogin' onClick={closeMenu}>Logout</a>

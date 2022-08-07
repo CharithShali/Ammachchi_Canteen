@@ -1,11 +1,12 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "./Header.module.css";
 import Navbar from "../navbar/Navbar";
 import Wrapper from "../helpers/Wrapper";
 import Button from "../button/Button";
 import { HashLink as Link } from "react-router-hash-link";
 
-const Header = () => {
+class Header extends Component {
+  render() {
   return (
     <header className={styled.header} id="home">
       <Wrapper>
@@ -30,6 +31,7 @@ const Header = () => {
       </Wrapper>
     </header>
   );
+  }
 };
 
 export default Header;

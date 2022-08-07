@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { foods } from "../menu/foods";
 
 const SellerButton = (props) => {
 

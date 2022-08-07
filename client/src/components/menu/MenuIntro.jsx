@@ -1,8 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "./MenuIntro.module.css";
 // import wings from "../../images/food.jpeg";
 
-const MenuIntro = () => {
+class MenuIntro extends Component {
+  render() {
   return (
     <section className={styled["menu-intro"]}>
       <figure>
@@ -13,6 +14,7 @@ const MenuIntro = () => {
       </figure>
     </section>
   );
+  }
 };
 
 export default MenuIntro;
