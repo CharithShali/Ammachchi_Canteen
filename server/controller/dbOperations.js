@@ -16,7 +16,7 @@ db.connect((error) => {
 
 function getMenuInfo() {
     return new Promise((resolve, reject) => {
-      sql = `SELECT * FROM today_menu `;
+      sql = `SELECT * FROM food_item where available = 1`;
       db.query(sql, (error, result) => {
         if (error) console.log(error.message);
         resolve(result);
@@ -189,18 +189,22 @@ function getMenuInfo() {
       });
     });
   }
-
+ 
   function myorders(id) {
     return new Promise((resolve, reject) => {
       console.log(id);
       sql = 
       `SELECT food_item.name, orders.quantity, orders.total,orders.status
       FROM orders
+      INNER JOIN customer
+      ON orders.customer_id = customer.id
       INNER JOIN food_item
-      ON orders.food_id=food_item.id where orders.id = '${id}'`;
+      ON food_item.id = orders.food_id 
+       where customer.id = '${id}'`;
       db.query(sql, (error, result) => {
         if (error) console.log(error.message);
        resolve(result);
+       console.log(result);
         reject(new Error("from ordersInfo"));
       });
     });

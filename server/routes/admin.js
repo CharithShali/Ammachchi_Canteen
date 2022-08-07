@@ -25,4 +25,14 @@ router.post("/login", async (req, res) => {
   //   res.send(token);
     
   });
+  router.get("/complaint", async (req, res) => {
+    console.log("Complaint");
+    try {
+      let data = await dbOperations.complaint();
+      res.send(data);
+    } catch (e) {
+      res.send(e.message);
+    }
+  });
+
   module.exports = router;

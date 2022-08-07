@@ -17,13 +17,5 @@ router.post("/add", async (req, res) => {
       console.log(e.message);
     }
   });
-  router.get("/", async (req, res) => {
-    console.log("Complaint");
-    try {
-      let data = await dbOperations.complaint();
-      res.send(data);
-    } catch (e) {
-      res.send(e.message);
-    }
-  });
+ 
   module.exports = router;

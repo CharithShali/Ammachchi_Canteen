@@ -103,10 +103,11 @@ router.post("/login", async (req, res) => {
 
 // @route   GET api/Home
 // @desc    get Menu order
-router.post("/myorders", async (req, res) => {
+router.get("/myorders", async (req, res) => {
   let details = req.body;  
+  console.log(details);
   try {
-    let data = await dbOperations.myorders(details.id);
+    let data = await dbOperations.myorders(details.customer_id);
     if (data) return res.status(200).json({ msg: "complaint added" });
     res.status(200).send(data);
     res.status(400).json({ error: "FATAL ERROR: complaint not added" });

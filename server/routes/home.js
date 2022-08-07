@@ -10,8 +10,8 @@ module.exports = router;
 
 
 module.exports = router;
-router.get("/", async (req, res) => {
-  console.log("Today Menu");
+router.get("/todaymenu", async (req, res) => {
+  details = req.body;
   try {
     let data = await dbOperations.getMenuInfo();
     res.send(data);
