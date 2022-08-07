@@ -176,6 +176,22 @@ function getMenuInfo() {
       });
     });
   }
+
+  function myorders(id) {
+    return new Promise((resolve, reject) => {
+      console.log(id);
+      sql = 
+      `SELECT food_item.name, orders.quantity, orders.total,orders.status
+      FROM orders
+      INNER JOIN food_item
+      ON orders.food_id=food_item.id where orders.id = '${id}'`;
+      db.query(sql, (error, result) => {
+        if (error) console.log(error.message);
+       resolve(result);
+        reject(new Error("from ordersInfo"));
+      });
+    });
+  }
   
   function getseller(name) {
     return new Promise((resolve, reject) => {
@@ -235,7 +251,8 @@ function getMenuInfo() {
     complaint:complaint,
     addcustomer: addcustomer,
     getseller:getseller,
-    admin:admin
+    admin:admin,
+    myorders:myorders
     //getcustomer:getcustomer
 
   };

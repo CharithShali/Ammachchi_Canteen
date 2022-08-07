@@ -43,8 +43,9 @@ app.use("/api/todaymenu", todaymenu);
 app.use("/api/fooditem",fooditem);
 app.use("/api/complaint", complaint);
 app.use("/api/customer", customer);
-app.use("/api/admin", admin)
-const bcrypt = require("bcrypt");
+app.use("/api/admin", admin);
+
+
 
 //app.use("/api/addseller", addseller);
 
