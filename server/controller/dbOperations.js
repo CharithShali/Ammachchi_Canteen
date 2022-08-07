@@ -176,6 +176,55 @@ function getMenuInfo() {
       });
     });
   }
+
+  function getfooditem(id) {
+    return new Promise((resolve, reject) => {
+      
+      sql = `SELECT * FROM food_item where id = '${id}'`;
+      db.query(sql, (error, result) => {
+        if (error) console.log(error.message);
+        console.log(result)
+        resolve(result);
+        reject(new Error("from getCustomerInfo"));
+      });
+    });
+  }
+
+  function myorders(id) {
+    return new Promise((resolve, reject) => {
+      console.log(id);
+      sql = 
+      `SELECT food_item.name, orders.quantity, orders.total,orders.status
+      FROM orders
+      INNER JOIN food_item
+      ON orders.food_id=food_item.id where orders.id = '${id}'`;
+      db.query(sql, (error, result) => {
+        if (error) console.log(error.message);
+       resolve(result);
+        reject(new Error("from ordersInfo"));
+      });
+    });
+  }
+
+  function addorder(details,total) {
+    return new Promise(async (resolve, reject) => {
+      let { customer_id,food_id,quantity,status } =
+        details;
+
+        
+  let sql = `INSERT INTO orders( customer_id,food_id,quantity,total,status)
+      VALUES('${customer_id}','${food_id}','${quantity}','${total}','${status}')`;
+                
+      db.query(sql, (error, results) => {
+        if (error) {
+          console.log(error.message);
+          resolve(false);
+        }
+        resolve(true);
+        reject(new Error("from complaint"));
+      });
+    });
+  }
   
   function getseller(name) {
     return new Promise((resolve, reject) => {
@@ -235,7 +284,10 @@ function getMenuInfo() {
     complaint:complaint,
     addcustomer: addcustomer,
     getseller:getseller,
-    admin:admin
+    admin:admin,
+    myorders:myorders,
+    getfooditem:getfooditem,
+    addorder:addorder
     //getcustomer:getcustomer
 
   };

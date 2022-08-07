@@ -29,6 +29,7 @@ const seller = require("./routes/seller");
 const complaint = require("./routes/complaint");
 const customer = require("./routes/customer");
 const admin = require("./routes/admin");
+const orders = require("./routes/orders");
 //const addseller= require("./routes/addseller");
 
 //const foods = require("./routes/sellers");
@@ -43,8 +44,10 @@ app.use("/api/todaymenu", todaymenu);
 app.use("/api/fooditem",fooditem);
 app.use("/api/complaint", complaint);
 app.use("/api/customer", customer);
-app.use("/api/admin", admin)
-const bcrypt = require("bcrypt");
+app.use("/api/admin", admin);
+app.use("/api/orders", orders);
+
+
 
 //app.use("/api/addseller", addseller);
 
