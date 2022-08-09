@@ -128,6 +128,21 @@ function getMenuInfo() {
     });
   }
 
+  function confirmOrder(order_id) {
+    return new Promise(async (resolve, reject) => {
+      
+  let sql = `UPDATE orders SET status = "confirm" where id = '${order_id}'`;
+                
+      db.query(sql, (error, results) => {
+        if (error) {
+          console.log(error.message);
+          resolve(false);
+        }
+        resolve(true);
+        reject(new Error("from addtodaymenu"));
+      });
+    });
+  }
 
   function seller() {
     return new Promise((resolve, reject) => {
@@ -339,6 +354,7 @@ function getMenuInfo() {
   // }
   
   module.exports = {
+    confirmOrder:confirmOrder,
     getMenuInfo: getMenuInfo,
     addSeller: addSeller,
     seller:seller,
