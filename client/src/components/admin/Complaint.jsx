@@ -16,19 +16,7 @@ class Complaint extends Component {
       }
 
     componentDidMount(){
-        axios.get('http://localhost:3001/api/customer/myorders/'+ window.location.pathname.split('/')[2])
-        .then(
-            response=> {
-                if (response.status === 200) {
-                    this.setState({
-                      data:response.data,
-                    });
-            }
-      })
-    }
-
-    componentDidUpdate(){
-        axios.get('http://localhost:3001/api/customer/myorders/'+ window.location.pathname.split('/')[2])
+        axios.get('http://localhost:3001/api/admin/Complaint')
         .then(
             response=> {
                 if (response.status === 200) {
@@ -42,24 +30,24 @@ class Complaint extends Component {
     render() {
     const text = (
         <>
-            My <span>Orders</span>
+            Customer <span>Feedbacks</span>
         </>
     );
     
     const order = this.state.data.map((item) => {
         return(
             <tr key={item.id} className={styled.tr}>
-            <td className={styled.columns} >{item.name}</td>
-            <td className={styled.columns} >{item.quantity}</td>
-            <td className={styled.columns} >{item.total}</td>
-            <th className={styled.columns} >{item.status}</th>
+            <th className={styled.columns} >{item.name}</th>
+            <td className={styled.columns1} >{item.C_date.split('T')[0]}</td>
+            <td className={styled.columns1} >{item.subject}</td>
+            <td className={styled.columns1} >{item.description}</td>
             </tr>
         );
     });
 
     return(
         <Background url={darkGreyBg}>
-        <section id="check" className={styled.intro1}>
+        <section id="feedback" className={styled.intro1}>
         <Heading text={text} className="heading-md" />
         <div className={styled.div} >
             <table className={styled.table}>

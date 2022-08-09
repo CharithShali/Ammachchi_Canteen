@@ -131,7 +131,7 @@ function getMenuInfo() {
   function confirmOrder(order_id) {
     return new Promise(async (resolve, reject) => {
       
-  let sql = `UPDATE orders SET status = "confirm" where id = '${order_id}'`;
+  let sql = `UPDATE orders SET status = "Finished" where id = '${order_id}'`;
                 
       db.query(sql, (error, results) => {
         if (error) {
@@ -195,7 +195,7 @@ function getMenuInfo() {
 
   function complaint() {
     return new Promise((resolve, reject) => {
-      sql = `SELECT customer.name, complaint.subject, complaint.description
+      sql = `SELECT customer.name, complaint.subject, complaint.description, complaint.C_date
       FROM complaint
       INNER JOIN customer
       ON complaint.customer_id = customer.id

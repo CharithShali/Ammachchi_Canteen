@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import AdminHeader from "../admin/AdminHeader";
 import Complaint from "../admin/Complaint";
-import Revenue from "../admin/Revenue";
+// import Revenue from "../admin/Revenue";
 
 class Admin extends Component {
 

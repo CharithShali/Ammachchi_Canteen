@@ -126,7 +126,7 @@ class Seller extends Component {
   });
 
   return (
-    <section className={styled.favourites}>
+    <section id="menu" className={styled.favourites}>
       <Wrapper>
         <article className={styled.intro}>
           <Heading text={text} className="heading-md" />

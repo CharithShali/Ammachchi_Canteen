@@ -57,6 +57,10 @@
         font-size: 25px;
     }
 
+    .columns1 {
+        font-size: 20px;
+    }
+
     .tr {
         justify-content: space-between;
         height: 50px;

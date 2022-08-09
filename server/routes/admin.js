@@ -26,7 +26,6 @@ router.post("/login", async (req, res) => {
     
   });
   router.get("/complaint", async (req, res) => {
-    console.log("Complaint");
     try {
       let data = await dbOperations.complaint();
       res.send(data);
