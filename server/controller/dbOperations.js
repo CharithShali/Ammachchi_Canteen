@@ -195,7 +195,11 @@ function getMenuInfo() {
 
   function complaint() {
     return new Promise((resolve, reject) => {
-      sql = `SELECT * FROM complaint`;
+      sql = `SELECT customer.name, complaint.subject, complaint.description
+      FROM complaint
+      INNER JOIN customer
+      ON complaint.customer_id = customer.id
+       `;
       db.query(sql, (error, result) => {
         if (error) console.log(error.message);
         resolve(result);
