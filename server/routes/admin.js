@@ -42,4 +42,16 @@ router.post("/login", async (req, res) => {
       res.send(e.message);
     }
   });
+
+  router.get("/orders", async (req, res) => {
+    try {
+      let data = await dbOperations.orders();
+      res.send(data);
+    } catch (e) {
+      res.send(e.message);
+    }
+  });
+
+
+  
   module.exports = router;
