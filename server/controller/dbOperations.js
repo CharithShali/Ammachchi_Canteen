@@ -248,16 +248,38 @@ function getMenuInfo() {
     });
   }
 
+
+  function sellerorders(id) {
+    return new Promise((resolve, reject) => {
+      // console.log(id);
+      sql = 
+      `SELECT  food_item.name, orders.quantity, orders.total,orders.status
+      FROM orders
+      INNER JOIN food_item
+      ON orders.food_id = food_item.id
+      INNER JOIN seller
+      ON food_item.seller_id = seller.id 
+       where seller.id = '${id}'`;
+      db.query(sql, (error, result) => {
+        if (error) console.log(error.message);
+       resolve(result);
+      //  console.log(result);
+        reject(new Error("from ordersInfo"));
+      });
+    });
+  }
+
   function addorder(details,total) {
     let today = new Date(Date.now());
-console.log(today);
+
+    console.log(today);
     return new Promise(async (resolve, reject) => {
       let { customer_id,food_id,quantity,status } =
         details;
 
         
   let sql = `INSERT INTO orders( customer_id,food_id,quantity,total,date,status)
-      VALUES('${customer_id}','${food_id}','${quantity}','${total}','${today}','${status}')`;
+      VALUES('${customer_id}','${food_id}','${quantity}','${total}','${today.toISOString().split('T')[0]}','${status}')`;
                 
       db.query(sql, (error, results) => {
         if (error) {
@@ -334,7 +356,8 @@ console.log(today);
     myorders:myorders,
     getfooditem:getfooditem,
     getfooditems:getfooditems,
-    addorder:addorder
+    addorder:addorder,
+    sellerorders:sellerorders
     //getcustomer:getcustomer
 
   };
