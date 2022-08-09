@@ -56,6 +56,7 @@ INSERT INTO `complaint` (`id`, `C_date`, `subject`, `description`, `customer_id`
 (2, '2019-07-04', 'new Complaint', 'ddd', 1),
 (3, '2019-07-04', 'new Complaint', 'ddd', 1),
 (4, '2019-07-04', 'new Complaint', 'ddd', 1);
+(5, '2019-07-04', 'new Complaint', 'ddd', 1);
 
 -- --------------------------------------------------------
 
