@@ -38,21 +38,21 @@ class Revenue extends Component {
         return(
             <tr key={item.id} className={styled.tr}>
             <th className={styled.columns} >{item.name}</th>
-            <td className={styled.columns1} >{item.revenue}</td>
+            <td className={styled.columns} >{item.revenue}</td>
             </tr>
         );
     });
 
     return(
         <Background url={darkGreyBg}>
-        <section id="feedback" className={styled.intro1}>
+        <section id="feedback" className={styled.intro3}>
         <Heading text={text} className="heading-md" />
         <div className={styled.div} >
-            <table className={styled.table}>
+            <table className={styled.table2}>
                 <thead className="table-dark text-center" >
                 <tr className={styled.tr1}>
                     <th scope="col" style={{textAlign: 'center'}} className={styled.firstRow}>Seller</th>
-                    <th scope="col" style={{textAlign: 'center'}} className={styled.firstRow}>Date</th>
+                    <th scope="col" style={{textAlign: 'center'}} className={styled.firstRow}>Revenue</th>
                 </tr>
                 </thead>
                 <tbody>

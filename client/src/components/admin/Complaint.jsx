@@ -50,7 +50,7 @@ class Complaint extends Component {
         <section id="feedback" className={styled.intro1}>
         <Heading text={text} className="heading-md" />
         <div className={styled.div} >
-            <table className={styled.table}>
+            <table className={styled.table1}>
                 <thead className="table-dark text-center" >
                 <tr className={styled.tr1}>
                     <th scope="col" style={{textAlign: 'center'}} className={styled.firstRow}>Customer</th>
