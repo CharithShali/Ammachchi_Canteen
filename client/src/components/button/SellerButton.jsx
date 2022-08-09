@@ -1,19 +1,32 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 
-const SellerButton = (props) => {
+class SellerButton extends Component {
 
-  const [Active, setActive] = useState(false);
+  constructor(props) {
+    super(props);
 
-  const handleClick = () => {
-    setActive(current => !current);
-  };
+    this.state = {
+      recordForEdit: props.recordForEdit,
+      Active: props.Active,
+      onClick: props.onClick,
+    }
 
+    this.setActive = this.setActive.bind(this);
+  }
+
+  setActive(){
+    this.setState({
+      Active: !this.state.Active,
+    })
+}
+
+  render() {
 
   return (
     <button 
       style={{
-        backgroundColor: Active ? 'green' : 'salmon',
-        color: Active ? 'white' : '',
+        backgroundColor: this.state.Active ? 'green' : 'salmon',
+        color: this.state.Active ? 'white' : '',
         border: 'none',
         borderRadius: '10px',
         overflow: 'hidden',
@@ -22,11 +35,13 @@ const SellerButton = (props) => {
         fontWeight: 'bold',
         cursor: 'pointer',
         }}
-      onClick={handleClick}
+      onClick={this.state.onClick}
+      type="submit"
     >
-      {Active ? 'Available' : 'Not Available'}
+      {this.state.Active ? 'Available' : 'Not Available'}
     </button>
   );
+  }
 };
 
 export default SellerButton;
