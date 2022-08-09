@@ -1,27 +1,70 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import styled from "./CustomerFavourites.module.css";
 import Controls from "../../components/button/Controls";
 import Heading from "../header/Heading";
 import Wrapper from "../helpers/Wrapper";
 import Popup from "../../components/popup/Popup";
 import Order from "../popup/Order";
-import { favorites } from "./favourites";
+import { foods } from "./foods";
+import axios from 'axios';
 
-const CustomerFavourites = () => {
+class CustomerFavourites extends Component {
 
-  const [recordForEdit, setRecordForEdit] = useState(null)
-  const [openPopup, setOpenPopup] = useState(false)
-  const [openSPopup, setOpenSPopup] = useState(false)
+  constructor(props) {
+    super(props);
 
-  const addValue = () => {
-    setOpenSPopup(true)
-    setOpenPopup(false)
-}
+    this.state = {
+      data:[],
+      recordForEdit: null,
+      openPopup: false,
+      openSPopup: false,
+    }
 
-  const openInPopup = id => {
-    setRecordForEdit(id)
-    setOpenPopup(true)
- }
+    this.addValue = this.addValue.bind(this);
+    this.openInPopup = this.openInPopup.bind(this);
+    this.setOpenPopup = this.setOpenPopup.bind(this);
+    this.setOpenSPopup = this.setOpenSPopup.bind(this);
+  }
+
+  addValue(){
+    this.setState({
+      openPopup: false,
+      openSPopup: true,
+    })
+  }
+
+  setOpenSPopup(bool){
+    this.setState({
+      openSPopup: bool,
+    })
+  }
+
+  setOpenPopup(bool){
+    this.setState({
+      openPopup: bool,
+    })
+  }
+
+  openInPopup(id){
+    this.setState({
+      recordForEdit: id,
+      openPopup: true,
+    })
+  }
+
+  componentDidMount(){
+    axios.get('http://localhost:3001/api/home/todaymenu')
+    .then(
+        response=> {
+            if (response.status === 200) {
+                this.setState({
+                  data:response.data,
+                });
+        }
+    })
+  }
+
+  render() {
 
   const text = (
     <>
@@ -29,7 +72,15 @@ const CustomerFavourites = () => {
     </>
   );
 
-  const faves = favorites.map((item) => {
+  const data = this.state.data;
+
+  var result = foods.filter(function (o1) {
+    return data.some(function (o2) {
+        return o1.name === o2.name; 
+   });
+ });
+
+  const faves = result.map((item) => {
     return (
       <article key={item.id} className={styled.faves}>
         <figure>
@@ -42,7 +93,7 @@ const CustomerFavourites = () => {
             <p className={styled.price}>Rs {item.price}</p>
             <Controls.OrderButton
                     text="Order"
-                    onClick={() => { setOpenPopup(true); openInPopup(item.id); }}
+                    onClick={() => { this.openInPopup(item.id); }}
               />
           </div>
         </div>
@@ -64,21 +115,22 @@ const CustomerFavourites = () => {
       </Wrapper>
       <Popup
             title="Order"
-            openPopup={openPopup}
-            setOpenPopup={setOpenPopup}
+            openPopup={this.state.openPopup}
+            setOpenPopup={this.setOpenPopup}
       >
         <Order
-              recordForEdit={recordForEdit}
-              addValue={addValue} 
+              recordForEdit={this.state.recordForEdit}
+              addValue={this.addValue} 
         />
       </Popup>
       <Popup
           title = "Your order has been placed successfully"
-          openPopup={openSPopup}
-          setOpenPopup={setOpenSPopup}
+          openPopup={this.state.openSPopup}
+          setOpenPopup={this.setOpenSPopup}
       ></Popup>
     </section>
   );
+  }
 };
 
 export default CustomerFavourites;

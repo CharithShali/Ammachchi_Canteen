@@ -16,7 +16,7 @@ class Check extends Component {
       }
 
     componentDidMount(){
-        axios.get('http://localhost:3001/api/customer/myorders/'+window.location.pathname.split('/')[2])
+        axios.get('http://localhost:3001/api/customer/myorders/'+ window.location.pathname.split('/')[2])
         .then(
             response=> {
                 if (response.status === 200) {

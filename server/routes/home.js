@@ -3,12 +3,6 @@ const dbOperations = require("../controller/dbOperations")
 const router = express.Router();
 module.exports = router;
 
-
-
-
-
-
-
 module.exports = router;
 router.get("/todaymenu", async (req, res) => {
   details = req.body;

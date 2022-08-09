@@ -8,7 +8,6 @@ const router = express.Router();
 router.post("/add", async (req, res) => {
   let details = req.body;
   console.log(details.name)
-  
   try {
     let data = await dbOperations.addfooditem(details);
     if (data) return res.status(200).json({ msg: "complaint added" });
@@ -17,5 +16,7 @@ router.post("/add", async (req, res) => {
     console.log(e.message);
   }
 });
+
+
 
   module.exports = router;

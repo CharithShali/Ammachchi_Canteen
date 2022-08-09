@@ -13,7 +13,7 @@ import rotti from "../../images/rotti.jpg";
 
 export const foods = [
   {
-    id: 1,
+    id: 3,
     name: "Boori",
     price: 50,
     url: boori,
@@ -25,7 +25,7 @@ export const foods = [
     url: dosai,
   },
   {
-    id: 3,
+    id: 5,
     name: "Idly",
     price: 40,
     url: idly,
@@ -43,25 +43,25 @@ export const foods = [
     url: rotti,
   },
   {
-    id: 10,
+    id: 7,
     name: "Wood Apple Juice",
     price: 80,
     url: wood,
   },
   {
-    id: 11,
+    id: 10,
     name: "Butter fruit juice",
-    price: 40,
+    price: 100,
     url: butter,
   },
   {
-    id: 12,
+    id: 8,
     name: "Cutlet",
     price: 40,
     url: cutlet,
   },
   {
-    id: 5,
+    id: 1,
     name: "Dodol",
     price: 40,
     url: dodol,
@@ -73,13 +73,13 @@ export const foods = [
     url: pine,
   },
   {
-    id: 7,
+    id: 11,
     name: "Mango Juice",
     price: 80,
     url: mango,
   },
   {
-    id: 8,
+    id: 12,
     name: "Lemon Juice",
     price: 80,
     url: lemon,
