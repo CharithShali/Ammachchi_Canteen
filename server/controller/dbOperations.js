@@ -341,14 +341,13 @@ function getMenuInfo() {
 
   function income(){
     return new Promise((resolve, reject) => {
-      sql = ` SELECT seller.name, SUM(orders.total)
-      from orders
-    INNER JOIN food_item
-    ON orders.food_id = food_item.id
-    INNER JOIN seller
-    ON food_item.seller_id = seller.id
-    where date(date)=curdate()
-      GROUP BY Name;`;
+      sql = ` SELECT  seller.name, SUM(orders.total) as 'revenue'
+      FROM orders
+      JOIN food_item
+      ON orders.food_id = food_item.id 
+      JOIN seller
+      ON seller.id = food_item.seller_id 
+     GROUP by seller.name;`;
       db.query(sql, (error, result) => {
         if (error) console.log(error.message);
         console.log(result)
