@@ -1,9 +1,12 @@
 import Background from "../helpers/Background";
+import React, { Component } from "react";
 import Seller from "./seller";
 import darkGreyBg from "../../images/dark-grey-bg.png";
 import MenuIntro from "./MenuIntro";
 
-const SellerMenu = () => {
+class SellerMenu extends Component {
+
+  render() {
   return (
     <section id="menu">
       <Background url={darkGreyBg}>
@@ -12,6 +15,7 @@ const SellerMenu = () => {
       </Background>
     </section>
   );
+  }
 };
 
 export default SellerMenu;

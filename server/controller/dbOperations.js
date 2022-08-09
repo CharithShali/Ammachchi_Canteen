@@ -25,6 +25,18 @@ function getMenuInfo() {
       });
     });
   }
+
+  function getSellerAvailableFood(id) {
+    return new Promise((resolve, reject) => {
+      sql = `SELECT * FROM food_item where available = 1 AND seller_id = '${id}'`;
+      db.query(sql, (error, result) => {
+        if (error) console.log(error.message);
+        // console.log(result);
+        resolve(result);
+        reject(new Error("from  todaymenu"));
+      });
+    });
+  }
  
 
   function addSeller(details) {
@@ -308,6 +320,7 @@ function getMenuInfo() {
     seller:seller,
     addtodaymenu:addtodaymenu,
     removetodaymenu:removetodaymenu,
+    getSellerAvailableFood:getSellerAvailableFood,
     addfooditem:addfooditem,
     customer: customer,
    // addCustomer:addCustomer,

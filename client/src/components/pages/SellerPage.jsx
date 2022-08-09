@@ -1,9 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 import SellerHeader from "../header/SellerHeader";
 import SellerMenu from "../menu/SellerMenu";
 import Manage from "../tables/ManageOrder";
 
-const Seller = () => {
+class Seller extends Component {
+
+  render() {
   return (
     <section id="seller">
       <SellerHeader />
@@ -12,6 +14,7 @@ const Seller = () => {
     </section>
     
   );
+  }
 };
 
 export default Seller;
