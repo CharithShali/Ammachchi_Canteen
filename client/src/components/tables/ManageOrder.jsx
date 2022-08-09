@@ -3,7 +3,7 @@ import styled from "./Check.module.css";
 import Heading from "../header/Heading";
 import Background from "../helpers/Background";
 import darkGreyBg from "../../images/dark-grey-bg.png"
-import Button from "../button/Button";
+import Button from "../button/ManageButton";
 import axios from 'axios';
 
 class Manage extends Component {
@@ -13,7 +13,17 @@ class Manage extends Component {
     
         this.state = {
           data:[],
+          recordForEdit: null,
         }
+
+        this.setRecord = this.setRecord.bind(this);
+        this.onFormSubmit = this.onFormSubmit.bind(this);
+      }
+
+      setRecord(id){
+        this.setState({
+          recordForEdit: id,
+        })
       }
 
     componentDidMount(){
@@ -42,26 +52,11 @@ class Manage extends Component {
 
   onFormSubmit(e){
     e.preventDefault();
-    const C_date = this.state.C_date;
-    const subject = this.state.subject;
-    const description = this.state.description;
-    const customer_id = window.location.pathname.split('/')[2];
-  
-    const addcomplaint = {C_date,subject,description,customer_id}
+    const id = this.state.recordForEdit;
+    const order = {id}
     
-  
-      axios.post('http://localhost:3001/api/seller/confirmorder', addcomplaint)
-        .then(res => {
-          if (res.status === 200) {
-            
-            this.setState({
-              subject:'',
-              description:'',
-    
-            });
-            window.location.assign('/customer/'+window.location.pathname.split('/')[2]);
-          }
-        })
+    axios.post('http://localhost:3001/api/seller/confirmorder', order)
+        
   }
 
     render() {
@@ -79,7 +74,7 @@ class Manage extends Component {
             <td className={styled.columns} >{item.quantity}</td>
             <td className={styled.columns} >{item.total}</td>
             <th className={styled.columns} >{item.status}</th>
-            <Button type="submit" >Ready!</Button>
+            <Button type="submit" onClick={() => { this.setRecord(item.id); }} text="Ready!"/>
             </tr>
         );
     });
@@ -87,7 +82,7 @@ class Manage extends Component {
     return(
         <Background url={darkGreyBg}>
         <section id="manage" className={styled.intro2}>
-        <form>
+        <form onSubmit={this.onFormSubmit}>
         <Heading text={text} className="heading-md"/>
         <div className={styled.div} >
             <table className={styled.table1}>

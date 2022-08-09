@@ -257,7 +257,7 @@ function getMenuInfo() {
       ON orders.customer_id = customer.id
       INNER JOIN food_item
       ON food_item.id = orders.food_id 
-       where customer.id = '${id}'`;
+       where customer.id = '${id}' ORDER BY id DESC`;
       db.query(sql, (error, result) => {
         if (error) console.log(error.message);
        resolve(result);
@@ -272,13 +272,13 @@ function getMenuInfo() {
     return new Promise((resolve, reject) => {
       // console.log(id);
       sql = 
-      `SELECT  food_item.name, orders.quantity, orders.total,orders.status
+      `SELECT  food_item.name, orders.quantity, orders.total, orders.status, orders.id
       FROM orders
       INNER JOIN food_item
       ON orders.food_id = food_item.id
       INNER JOIN seller
       ON food_item.seller_id = seller.id 
-       where seller.id = '${id}'`;
+       where seller.id = '${id}' ORDER BY id DESC`;
       db.query(sql, (error, result) => {
         if (error) console.log(error.message);
        resolve(result);
