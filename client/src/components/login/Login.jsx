@@ -57,8 +57,6 @@ class Login extends Component {
                             }).then((result) => {
 
                                 if (result.value) {
-                                    // sessionStorage.setItem('userToken', response.data.token);
-                                    // sessionStorage.setItem('tokenTime', response.data.tokenLifeInSeconds);
                                     window.location.assign('/customer/'+this.state.id);
                                 }
                             });

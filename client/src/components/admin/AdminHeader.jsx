@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Background from "../helpers/Background";
 import darkGreyBg from "../../images/brown.jpg";
-import SellerNavbar from "../navbar/SellerNavbar";
+import AdminNavbar from "../navbar/AdminNavbar";
 import Wrapper from "../helpers/Wrapper";
 
 class Header extends Component {
@@ -11,7 +11,7 @@ class Header extends Component {
     <header id="home">
     <Background url={darkGreyBg}>
       <Wrapper>
-        <SellerNavbar />
+        <AdminNavbar />
 
       </Wrapper>
       </Background>

@@ -7,6 +7,7 @@ import Signup from "./components/login/Signup";
 import Customer from "./components/pages/CustomerPage";
 import SellerLogin from "./components/login/SellerLogin";
 import AdminLogin from "./components/login/AdminLogin";
+import Admin from "./components/pages/AdminPage";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="customer/:id" element={<Customer />} />
         <Route path="seller/:id" element={<Seller />} />
+        <Route path="admin/:id" element={<Admin />} />
         <Route path="login" element={<Login />} />
         <Route path="sign-up" element={<Signup />} />
         <Route path="adminlogin" element={<AdminLogin />} />
