@@ -23,7 +23,7 @@ const AdminNavbar = () => {
                 <ul className={click ? "nav-menu3 active" : "nav-menu3"}>
                 
                     <li className='nav-item3'>
-                        <a href='#complaints' onClick={closeMenu}>Complaints</a>
+                        <a href='#feedback' onClick={closeMenu}>Feedbacks</a>
                     </li>
                     <li className='nav-item3'>
                         <a href='#revenue' onClick={closeMenu}>Revenue</a>

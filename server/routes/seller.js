@@ -71,14 +71,16 @@ router.get("/myorders/:seller_id", async (req, res) => {
   let id = req.params.seller_id;  
   try {
     let data = await dbOperations.sellerorders(id);
+    if (data) return res.status(200).send(data);
+    else res.status(400).json({ error: "FATAL ERROR " });
   }
   catch (e) {
     console.log(e.message);
   }
 });
 
-router.get("/confirmorder", async (req, res) => {
-  let id = req.body;  
+router.post("/confirmorder", async (req, res) => {
+  let { id } = req.body;  
   try {
     let data = await dbOperations.confirmOrder(id);
     if (data) return res.status(200).send(data);
