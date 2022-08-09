@@ -70,9 +70,9 @@ class Manage extends Component {
     const order = this.state.data.map((item) => {
         return(
             <tr key={item.id} className={styled.tr}>
+            <td className={styled.columns} >{item.id}</td>
             <td className={styled.columns} >{item.name}</td>
             <td className={styled.columns} >{item.quantity}</td>
-            <td className={styled.columns} >{item.total}</td>
             <th className={styled.columns} >{item.status}</th>
             <Button type="submit" onClick={() => { this.setRecord(item.id); }} text="Ready!"/>
             </tr>
@@ -88,9 +88,9 @@ class Manage extends Component {
             <table className={styled.table1}>
                 <thead className="table-dark text-center" >
                 <tr className={styled.tr1}>
+                    <th scope="col" className={styled.firstRow}>Token No</th>
                     <th scope="col" className={styled.firstRow}>Food Name</th>
                     <th scope="col" className={styled.firstRow}>Quantity</th>
-                    <th scope="col" className={styled.firstRow}>Total Price</th>
                     <th scope="col" className={styled.firstRow}>Status</th>
                     <th scope="col" className={styled.firstRow}></th>
                 </tr>

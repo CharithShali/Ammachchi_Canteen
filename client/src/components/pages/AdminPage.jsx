@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AdminHeader from "../admin/AdminHeader";
 import Complaint from "../admin/Complaint";
 import Revenue from "../admin/Revenue";
+import Cost from "../admin/CostTable";
 
 class Admin extends Component {
 
@@ -11,6 +12,7 @@ class Admin extends Component {
       <AdminHeader />
       <Complaint />
       <Revenue />
+      <Cost />
     </section>
     
   );

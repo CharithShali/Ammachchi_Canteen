@@ -49,6 +49,7 @@ class Check extends Component {
     const order = this.state.data.map((item) => {
         return(
             <tr key={item.id} className={styled.tr}>
+            <td className={styled.columns} >{item.id}</td>
             <td className={styled.columns} >{item.name}</td>
             <td className={styled.columns} >{item.quantity}</td>
             <td className={styled.columns} >{item.total}</td>
@@ -65,6 +66,7 @@ class Check extends Component {
             <table className={styled.table}>
                 <thead className="table-dark text-center" >
                 <tr className={styled.tr1}>
+                <th scope="col" className={styled.firstRow}>Token No</th>
                     <th scope="col" className={styled.firstRow}>Food Name</th>
                     <th scope="col" className={styled.firstRow}>Quantity</th>
                     <th scope="col" className={styled.firstRow}>Total Price</th>

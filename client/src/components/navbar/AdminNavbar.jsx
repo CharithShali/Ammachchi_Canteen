@@ -20,15 +20,18 @@ const AdminNavbar = () => {
                         : (<FaBars size={30} style={{ color: '#ffffff' }} />)}
 
                 </div>
-                <ul className={click ? "nav-menu3 active" : "nav-menu3"}>
+                <ul className={click ? "nav-menu4 active" : "nav-menu4"}>
                 
-                    <li className='nav-item3'>
+                    <li className='nav-item4'>
                         <a href='#feedback' onClick={closeMenu}>Feedbacks</a>
                     </li>
-                    <li className='nav-item3'>
+                    <li className='nav-item4'>
                         <a href='#revenue' onClick={closeMenu}>Revenue</a>
                     </li>
-                    <li className='nav-item3'>
+                    <li className='nav-item4'>
+                        <a href='#cost' onClick={closeMenu}>Orders</a>
+                    </li>
+                    <li className='nav-item4'>
                         <a href='/adminlogin' onClick={closeMenu}>Logout</a>
                     </li>
                 </ul>

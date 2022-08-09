@@ -5,7 +5,7 @@ import Background from "../helpers/Background";
 import darkGreyBg from "../../images/dark-grey-bg.png";
 import axios from 'axios';
 
-class Revenue extends Component {
+class Cost extends Component {
 
     constructor(props) {
         super(props);
@@ -15,8 +15,8 @@ class Revenue extends Component {
         }
       }
 
-    componentDidMount(){
-        axios.get('http://localhost:3001/api/admin/income')
+      componentDidMount(){
+        axios.get('http://localhost:3001/api/admin/orders')
         .then(
             response=> {
                 if (response.status === 200) {
@@ -30,29 +30,29 @@ class Revenue extends Component {
     render() {
     const text = (
         <>
-            Total <span>Revenue</span>
+            My <span>Orders</span>
         </>
     );
     
     const order = this.state.data.map((item) => {
         return(
-            <tr key={item.id} className={styled.tr}>
-            <th className={styled.columns} >{item.name}</th>
-            <td className={styled.columns} >{item.revenue}</td>
+            <tr key={item.token} className={styled.tr}>
+            <td className={styled.columns} >{item.token}</td>
+            <td className={styled.columns} >{item.total}</td>
             </tr>
         );
     });
 
     return(
         <Background url={darkGreyBg}>
-        <section id="revenue" className={styled.intro3}>
+        <section id="cost" className={styled.intro3}>
         <Heading text={text} className="heading-md" />
         <div className={styled.div} >
             <table className={styled.table2}>
                 <thead className="table-dark text-center" >
                 <tr className={styled.tr1}>
-                    <th scope="col" style={{textAlign: 'center'}} className={styled.firstRow}>Seller</th>
-                    <th scope="col" style={{textAlign: 'center'}} className={styled.firstRow}>Revenue</th>
+                <th scope="col" className={styled.firstRow}>Token No</th>     
+                <th scope="col" className={styled.firstRow}>Total Price</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -66,4 +66,4 @@ class Revenue extends Component {
     }
 };
 
-export default Revenue;
+export default Cost;
