@@ -15,7 +15,7 @@ class Order extends Component {
       data:[],
       addValue: props.addValue,
       recordForEdit: props.recordForEdit,
-      quantity: 0,
+      quantity: 1,
       status: 'Pending',
 
     }
@@ -41,7 +41,7 @@ class Order extends Component {
             if (res.status === 200) {
               
               this.setState({
-                quantity: 0,
+                quantity: 1,
       
               });
             }
@@ -97,7 +97,7 @@ class Order extends Component {
           <div>
           <p className={styled.name}> Quantity</p>
           <input type="number" className={styled.input} id="quantity" name="quantity" value={this.state.quantity} 
-          onChange={this.handleInputChange} min={0}>
+          onChange={this.handleInputChange} min={1}>
           </input>
           </div>
         </div>
