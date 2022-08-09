@@ -49,8 +49,6 @@ class SellerLogin extends Component {
                             }).then((result) => {
 
                                 if (result.value) {
-                                    // sessionStorage.setItem('userToken', response.data.token);
-                                    // sessionStorage.setItem('tokenTime', response.data.tokenLifeInSeconds);
                                     window.location.assign('/seller/'+this.state.id);
                                 }
                             });
