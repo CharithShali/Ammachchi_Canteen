@@ -195,7 +195,7 @@ function getMenuInfo() {
 
   function complaint() {
     return new Promise((resolve, reject) => {
-      sql = `SELECT customer.name, complaint.subject, complaint.description, complaint.C_date
+      sql = `SELECT customer.name, complaint.subject, complaint.description
       FROM complaint
       INNER JOIN customer
       ON complaint.customer_id = customer.id
@@ -336,11 +336,30 @@ function getMenuInfo() {
         reject(new Error("from getCustomerInfo"));
       });
     });
-
-    
   }
   
 
+  function income(){
+    return new Promise((resolve, reject) => {
+      sql = ` SELECT seller.name, SUM(orders.total)
+      from orders
+    INNER JOIN food_item
+    ON orders.food_id = food_item.id
+    INNER JOIN seller
+    ON food_item.seller_id = seller.id
+    where date(date)=curdate()
+      GROUP BY Name;`;
+      db.query(sql, (error, result) => {
+        if (error) console.log(error.message);
+        console.log(result)
+        resolve(result);
+        reject(new Error("from getCustomerInfo"));
+      });
+    });
+
+  }
+ 
+  
 
   // function getcustomer(email) {
   //   return new Promise((resolve, reject) => {
@@ -377,7 +396,8 @@ function getMenuInfo() {
     getfooditem:getfooditem,
     getfooditems:getfooditems,
     addorder:addorder,
-    sellerorders:sellerorders
+    sellerorders:sellerorders,
+    income:income
     //getcustomer:getcustomer
 
   };

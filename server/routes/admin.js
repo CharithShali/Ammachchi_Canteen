@@ -34,4 +34,12 @@ router.post("/login", async (req, res) => {
     }
   });
 
+  router.get("/income", async (req, res) => {
+    try {
+      let data = await dbOperations.income();
+      res.send(data);
+    } catch (e) {
+      res.send(e.message);
+    }
+  });
   module.exports = router;
