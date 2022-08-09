@@ -1,12 +1,34 @@
-import React from "react";
-import { orders } from "./orders";
+import React, { Component } from "react";
 import styled from "./Check.module.css";
 import Heading from "../header/Heading";
 import Background from "../helpers/Background";
 import darkGreyBg from "../../images/dark-grey-bg.png"
 import Button from "../button/Button";
+import axios from 'axios';
 
-const Manage = () => {
+class Manage extends Component {
+
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+          data:[],
+        }
+      }
+
+    componentDidMount(){
+        axios.get('http://localhost:3001/api/seller/myorders/'+ window.location.pathname.split('/')[2])
+        .then(
+            response=> {
+                if (response.status === 200) {
+                    this.setState({
+                      data:response.data,
+                    });
+            }
+      })
+    }
+
+    render() {
 
     const text = (
         <>
@@ -14,12 +36,12 @@ const Manage = () => {
         </>
       );
 
-    const order = orders.map((item) => {
+    const order = this.state.data.map((item) => {
         return(
             <tr key={item.id} className={styled.tr}>
             <td className={styled.columns} >{item.name}</td>
             <td className={styled.columns} >{item.quantity}</td>
-            <td className={styled.columns} >{item.price}</td>
+            <td className={styled.columns} >{item.total}</td>
             <th className={styled.columns} >{item.status}</th>
             <Button type="submit" >Ready!</Button>
             </tr>
@@ -50,5 +72,6 @@ const Manage = () => {
         </Background>
     )
 };
+}
 
 export default Manage;
