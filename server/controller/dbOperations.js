@@ -19,6 +19,7 @@ function getMenuInfo() {
       sql = `SELECT * FROM food_item where available = 1`;
       db.query(sql, (error, result) => {
         if (error) console.log(error.message);
+        // console.log(result);
         resolve(result);
         reject(new Error("from  todaymenu"));
       });
@@ -85,10 +86,24 @@ function getMenuInfo() {
 
   function addtodaymenu(details) {
     return new Promise(async (resolve, reject) => {
-      let { food_item_id} =
-        details;
-        console.log(name);
-  let sql = `UPDATE food_item SET available = 1 where id = '${food_item_id}'`;
+      let { food_item_id } = details;
+  let sql = `UPDATE food_item SET available = 1 where id = '${food_item_id}' AND available = 0`;
+                
+      db.query(sql, (error, results) => {
+        if (error) {
+          console.log(error.message);
+          resolve(false);
+        }
+        resolve(true);
+        reject(new Error("from addtodaymenu"));
+      });
+    });
+  }
+
+  function removetodaymenu(details) {
+    return new Promise(async (resolve, reject) => {
+      let { food_item_id } = details;
+  let sql = `UPDATE food_item SET available = 0 where id = '${food_item_id}' AND available = 1`;
                 
       db.query(sql, (error, results) => {
         if (error) {
@@ -184,14 +199,26 @@ function getMenuInfo() {
         if (error) console.log(error.message);
         console.log(result)
         resolve(result);
-        reject(new Error("from getCustomerInfo"));
+        reject(new Error("from getFoodInfo"));
+      });
+    });
+  }
+
+  function getfooditems(id) {
+    return new Promise((resolve, reject) => {
+      sql = `SELECT * FROM food_item where seller_id = '${id}'`;
+      db.query(sql, (error, result) => {
+        if (error) console.log(error.message);
+        // console.log(result)
+        resolve(result);
+        reject(new Error("from getFoodInfo"));
       });
     });
   }
  
   function myorders(id) {
     return new Promise((resolve, reject) => {
-      console.log(id);
+      // console.log(id);
       sql = 
       `SELECT orders.id, food_item.name, orders.quantity, orders.total,orders.status
       FROM orders
@@ -203,7 +230,7 @@ function getMenuInfo() {
       db.query(sql, (error, result) => {
         if (error) console.log(error.message);
        resolve(result);
-       console.log(result);
+      //  console.log(result);
         reject(new Error("from ordersInfo"));
       });
     });
@@ -280,6 +307,7 @@ function getMenuInfo() {
     addSeller: addSeller,
     seller:seller,
     addtodaymenu:addtodaymenu,
+    removetodaymenu:removetodaymenu,
     addfooditem:addfooditem,
     customer: customer,
    // addCustomer:addCustomer,
@@ -290,6 +318,7 @@ function getMenuInfo() {
     admin:admin,
     myorders:myorders,
     getfooditem:getfooditem,
+    getfooditems:getfooditems,
     addorder:addorder
     //getcustomer:getcustomer
 
