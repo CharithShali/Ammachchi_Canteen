@@ -49,6 +49,28 @@ class Seller extends Component {
     })
   }
 
+  componentDidUpdate(){
+    axios.get('http://localhost:3001/api/seller/getfoods/'+window.location.pathname.split('/')[2])
+    .then(
+        response=> {
+            if (response.status === 200) {
+                this.setState({
+                  data:response.data,
+                });
+        }
+    })
+
+    axios.get('http://localhost:3001/api/home/todaymenu/'+window.location.pathname.split('/')[2])
+    .then(
+        response=> {
+            if (response.status === 200) {
+                this.setState({
+                  data1:response.data,
+                });
+        }
+    })
+  }
+
   onFormSubmit(e){
     // e.preventDefault();
     const food_item_id = this.state.recordForEdit;

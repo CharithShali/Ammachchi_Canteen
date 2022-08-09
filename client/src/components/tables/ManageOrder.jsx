@@ -28,6 +28,18 @@ class Manage extends Component {
       })
     }
 
+    componentDidUpdate(){
+      axios.get('http://localhost:3001/api/seller/myorders/'+ window.location.pathname.split('/')[2])
+      .then(
+          response=> {
+              if (response.status === 200) {
+                  this.setState({
+                    data:response.data,
+                  });
+          }
+    })
+  }
+
     render() {
 
     const text = (

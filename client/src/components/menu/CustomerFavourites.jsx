@@ -64,6 +64,18 @@ class CustomerFavourites extends Component {
     })
   }
 
+  componentDidUpdate(){
+    axios.get('http://localhost:3001/api/home/todaymenu')
+    .then(
+        response=> {
+            if (response.status === 200) {
+                this.setState({
+                  data:response.data,
+                });
+        }
+    })
+  }
+
   render() {
 
   const text = (

@@ -1,47 +1,88 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Controls from "../button/Controls";
-import { favorites } from "../menu/favourites";
+import { foods } from "../menu/foods";
 import styled from "../menu/CustomerFavourites.module.css";
-import { useOrder, Form } from "./useOrder";
+import { Form } from "./useOrder";
+import axios from 'axios';
 
-const initialFValues = {
-  quantity: 0,
-  
-}
 
-const Order = (props) => {
-    const { addValue, recordForEdit } = props;
+class Order extends Component {
 
-    const validate = (fieldValues = values) => {
-      let temp = { ...errors }
-      if ('quantity' in fieldValues)
-          temp.quantity = fieldValues.quantity ? "" : "This field is required."
-      
-      setErrors({
-          ...temp
-      })
+  constructor(props) {
+    super(props);
 
-      if (fieldValues === values)
-          return Object.values(temp).every(x => x === "")
+    this.state = {
+      data:[],
+      addValue: props.addValue,
+      recordForEdit: props.recordForEdit,
+      quantity: 0,
+      status: 'Pending',
+
+    }
+    
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-    const {
-      values,
-      errors,
-      setErrors,
-      handleInputChange,
-  } = useOrder(initialFValues, true, validate);
+    handleSubmit(e) {
+      e.preventDefault()
+      this.state.addValue();   
 
-    const handleSubmit = e => {
-        e.preventDefault()
-        if (validate()) {
-          addValue();
-      }
-       
+      const customer_id = window.location.pathname.split('/')[2];
+      const food_id = this.state.recordForEdit;
+      const quantity = this.state.quantity;
+      const status = this.state.status;
+    
+      const addorder = {customer_id,food_id,quantity,status}
+      
+    
+        axios.post('http://localhost:3001/api/orders/add', addorder)
+          .then(res => {
+            if (res.status === 200) {
+              
+              this.setState({
+                quantity: 0,
+      
+              });
+            }
+          })
     }
 
-    const food = favorites
-    .filter((item) => item.id === recordForEdit)
+    handleInputChange(e){
+      this.setState({
+        [e.target.name] : e.target.value
+      })
+  }
+
+  render() {
+
+    // const initialFValues = {
+    //   quantity: 0,
+      
+    // }
+
+  //   const validate = (fieldValues = values) => {
+  //     let temp = { ...errors }
+  //     if ('quantity' in fieldValues)
+  //         temp.quantity = fieldValues.quantity ? "" : "This field is required."
+      
+  //     setErrors({
+  //         ...temp
+  //     })
+
+  //     if (fieldValues === values)
+  //         return Object.values(temp).every(x => x === "")
+  // }
+
+  //   const {
+  //     values,
+  //     errors,
+  //     setErrors,
+  //     handleInputChange,
+  // } = useOrder(initialFValues, true, validate);
+
+    const food = foods
+    .filter((item) => item.id === this.state.recordForEdit)
     .map((item) => {
       return (
         <article key={item.id} className={styled.faves}>
@@ -55,7 +96,8 @@ const Order = (props) => {
           </div>
           <div>
           <p className={styled.name}> Quantity</p>
-          <input type="number" className={styled.input} id="quantity" name="quantity" value={values.quantity} onChange={handleInputChange} min={0}>
+          <input type="number" className={styled.input} id="quantity" name="quantity" value={this.state.quantity} 
+          onChange={this.handleInputChange} min={0}>
           </input>
           </div>
         </div>
@@ -64,7 +106,7 @@ const Order = (props) => {
     });
 
     return (
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
           <section >{food}
           <div>
               <Controls.OrderButton
@@ -76,6 +118,7 @@ const Order = (props) => {
       </Form>
     )
 };
+}
 
 export default Order;
 
