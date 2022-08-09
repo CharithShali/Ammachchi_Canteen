@@ -17,5 +17,16 @@ router.post("/add", async (req, res) => {
       console.log(e.message);
     }
   });
+
+  router.get("/all", async (req, res) => {
+    
+    try {
+      let data = await dbOperations.complaint();
+      if (data) return res.status(200).send(data);
+      else res.status(400).json({ error: "FATAL ERROR: complaint not added" });
+    } catch (e) {
+      console.log(e.message);
+    }
+  });
  
   module.exports = router;
