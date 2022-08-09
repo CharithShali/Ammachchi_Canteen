@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "./CustomerFavourites.module.css";
 import Button from "../../components/button/Button";
 import Heading from "../header/Heading";
@@ -6,23 +6,33 @@ import Wrapper from "../helpers/Wrapper";
 // import Popup from "../../components/popup/Popup";
 // import Order from "../popup/Order";
 import { Link } from "react-router-dom";
-import { favorites } from "./favourites";
+import { foods } from "./foods";
+import axios from 'axios';
 
-const CustomerFavourites = () => {
+class CustomerFavourites extends Component {
 
-//   const [recordForEdit, setRecordForEdit] = useState(null)
-//   const [openPopup, setOpenPopup] = useState(false)
-//   const [openSPopup, setOpenSPopup] = useState(false)
+  constructor(props) {
+    super(props);
 
-//   const addValue = () => {
-//     setOpenSPopup(true)
-//     setOpenPopup(false)
-// }
+    this.state = {
+      data:[],
+      
+    }
+  }
 
-//   const openInPopup = id => {
-//     setRecordForEdit(id)
-//     setOpenPopup(true)
-//  }
+  componentDidMount(){
+    axios.get('http://localhost:3001/api/home/todaymenu')
+    .then(
+        response=> {
+            if (response.status === 200) {
+                this.setState({
+                  data:response.data,
+                });
+        }
+    })
+  }
+
+  render() {
 
   const text = (
     <>
@@ -30,7 +40,15 @@ const CustomerFavourites = () => {
     </>
   );
 
-  const faves = favorites.map((item) => {
+  const data = this.state.data;
+
+  var result = foods.filter(function (o1) {
+    return data.some(function (o2) {
+        return o1.name === o2.name; 
+   });
+ });
+
+  const faves = result.map((item) => {
     return (
       <article key={item.id} className={styled.faves}>
         <figure>
@@ -62,23 +80,9 @@ const CustomerFavourites = () => {
 
         <section className={styled["faves-container"]}>{faves}</section>
       </Wrapper>
-      {/* <Popup
-            title="Order"
-            openPopup={openPopup}
-            setOpenPopup={setOpenPopup}
-      >
-        <Order
-              recordForEdit={recordForEdit}
-              addValue={addValue} 
-        />
-      </Popup>
-      <Popup
-          title = "Your order has been placed successfully"
-          openPopup={openSPopup}
-          setOpenPopup={setOpenSPopup}
-      ></Popup> */}
     </section>
   );
 };
+}
 
 export default CustomerFavourites;
