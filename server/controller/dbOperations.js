@@ -237,13 +237,15 @@ function getMenuInfo() {
   }
 
   function addorder(details,total) {
+    let today = new Date(Date.now());
+console.log(today);
     return new Promise(async (resolve, reject) => {
       let { customer_id,food_id,quantity,status } =
         details;
 
         
-  let sql = `INSERT INTO orders( customer_id,food_id,quantity,total,status)
-      VALUES('${customer_id}','${food_id}','${quantity}','${total}','${status}')`;
+  let sql = `INSERT INTO orders( customer_id,food_id,quantity,total,date,status)
+      VALUES('${customer_id}','${food_id}','${quantity}','${total}','${today}','${status}')`;
                 
       db.query(sql, (error, results) => {
         if (error) {
