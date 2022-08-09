@@ -150,7 +150,7 @@ INSERT INTO `seller` (`id`, `name`, `phone_number`) VALUES
 (14, 'undefined', 0),
 (15, 'ffff', 4444),
 (16, 'ffff', 4444),
-(17, 'rrr', 4444),
+(17, 'ffff', 4444),
 (18, 'rrr', 4444),
 (19, 'rrr', 4444),
 (20, 'rrr', 4444),
