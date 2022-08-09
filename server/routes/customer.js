@@ -20,15 +20,16 @@ module.exports = router;
 //   }
 // });
 
+
 router.post("/add", async (req, res) => {
   console.log("register server called");
   try {
     const schema = Joi.object({
      
-      name: Joi.string().min(3).required(),
+      name: Joi.string().min(2).required(),
       email: Joi.string().email({
-        minDomainSegments: 2,
-        tlds: { allow: ["com", "net"] },
+        minDomainSegments: 1,
+        tlds: { allow: ["lk"] },
       }),
       password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
       cpassword: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
@@ -37,11 +38,14 @@ router.post("/add", async (req, res) => {
       console.log("second try block");
       const value = await schema.validateAsync(req.body);
       let { password, email } = value;
+      
 
       try {
         const user = await dbOperations.customer(email);
-        if (user.length === 1) res.status(400).send("email already exists");
+        if (user.length === 1) res.status(200).send("email already exists");
+       
         else {
+          
           const client = {
             ...value,
            // password: await bcrypt.hash(password, 10),
@@ -66,7 +70,7 @@ router.post("/add", async (req, res) => {
         res.send("Registering to database " + err.message);
       }
     } catch (err) {
-      res.send("Schema validation " + err.message);
+      res.send("must valid email");
     }
   } catch (err) {
     res.send("Schema " + err.message);

@@ -43,6 +43,7 @@ class Contact extends Component {
         axios.post('http://localhost:3001/api/complaint/add', addcomplaint)
           .then(res => {
             if (res.status === 200) {
+              
               this.setState({
                 subject:'',
                 description:'',
@@ -77,8 +78,9 @@ class Contact extends Component {
             </article>
           </div>
           <form id="contact" className={styled.form} onSubmit={this.onFormSubmit}>
-            <label htmlFor="name">Your Name</label>
-            <input type="text" name="name" />
+           <div style={{textAlign:"center"}}> <h1 style={{fontSize:"50px"}}>Contact Us!</h1></div>
+           
+            
 
             <label htmlFor="subject">Subject</label>
             <input type="text" name="subject" 

@@ -41,12 +41,29 @@ class Signup extends Component {
 
         axios.post('http://localhost:3001/api/customer/add', user)
                     .then(response => {
+                      console.log(response);
+                      if(response.data==='email already exists') Swal.fire({
+                        icon: 'error',
+  title: 'Oops...',
+  text: 'email already exists!',
+  confirmButtonText: 'Back!',
+                    })
+                    else if (response.data==='must valid email') Swal.fire({
                       
-                        if (response.status === 200) {
+                      title: 'Oops...',
+                      text: 'Enter valid email(XXXXXX@eng.jfn.ac.lk)',
+                      confirmButtonText: 'Back!',
+                  })
+                        else if (response.status === 200) {
                           this.setState({
                             id:response.data[0].id,
                           })
                             Swal.fire({
+
+                              position: 'center',
+  icon: 'success',
+                            
+  timer: 15000,
                                 title: 'Sign up Successful',
                                 type: 'success',
                                 confirmButtonText: 'OK!',
