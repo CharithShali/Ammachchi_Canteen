@@ -357,6 +357,18 @@ function getMenuInfo() {
     });
 
   }
+  function orders() {
+    return new Promise((resolve, reject) => {
+      sql = `SELECT id as 'token',total from orders`;
+      db.query(sql, (error, result) => {
+        if (error) console.log(error.message);
+        console.log(result)
+        resolve(result);
+        reject(new Error("from getCustomerInfo"));
+      });
+    });
+  }
+  
  
   
 
@@ -396,7 +408,8 @@ function getMenuInfo() {
     getfooditems:getfooditems,
     addorder:addorder,
     sellerorders:sellerorders,
-    income:income
+    income:income,
+    orders:orders
     //getcustomer:getcustomer
 
   };
