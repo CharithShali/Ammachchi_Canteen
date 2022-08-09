@@ -40,6 +40,30 @@ class Manage extends Component {
     })
   }
 
+  onFormSubmit(e){
+    e.preventDefault();
+    const C_date = this.state.C_date;
+    const subject = this.state.subject;
+    const description = this.state.description;
+    const customer_id = window.location.pathname.split('/')[2];
+  
+    const addcomplaint = {C_date,subject,description,customer_id}
+    
+  
+      axios.post('http://localhost:3001/api/seller/confirmorder', addcomplaint)
+        .then(res => {
+          if (res.status === 200) {
+            
+            this.setState({
+              subject:'',
+              description:'',
+    
+            });
+            window.location.assign('/customer/'+window.location.pathname.split('/')[2]);
+          }
+        })
+  }
+
     render() {
 
     const text = (
@@ -63,7 +87,8 @@ class Manage extends Component {
     return(
         <Background url={darkGreyBg}>
         <section id="manage" className={styled.intro2}>
-        <Heading text={text} className="heading-md" />
+        <form>
+        <Heading text={text} className="heading-md"/>
         <div className={styled.div} >
             <table className={styled.table1}>
                 <thead className="table-dark text-center" >
@@ -80,6 +105,7 @@ class Manage extends Component {
                 </tbody>
             </table>
         </div>
+        </form>
         </section>
         </Background>
     )
