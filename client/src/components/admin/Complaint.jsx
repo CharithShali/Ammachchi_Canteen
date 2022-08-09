@@ -16,7 +16,7 @@ class Complaint extends Component {
       }
 
     componentDidMount(){
-        axios.get('http://localhost:3001/api/admin/Complaint')
+        axios.get('http://localhost:3001/api/admin/complaint')
         .then(
             response=> {
                 if (response.status === 200) {
