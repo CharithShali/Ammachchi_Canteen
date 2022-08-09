@@ -60,6 +60,12 @@ class Contact extends Component {
     </>
   );
 
+  text1 = (
+    <>
+      Contact <span>Us!</span> 
+    </>
+  );
+
   render() {
   return (
     <Background url={greyBg}>
@@ -78,11 +84,10 @@ class Contact extends Component {
             </article>
           </div>
           <form id="contact" className={styled.form} onSubmit={this.onFormSubmit}>
-           <div style={{textAlign:"center"}}> <h1 style={{fontSize:"50px"}}>Contact Us!</h1></div>
+          <Heading text={this.text1} className="heading-md" />
+           {/* <div style={{textAlign:"center"}}> <h1 style={{fontSize:"50px"}}>Contact Us!</h1></div> */}
            
-            
-
-            <label htmlFor="subject">Subject</label>
+            <label htmlFor="subject" style={{paddingTop:'50px'}}>Subject</label>
             <input type="text" name="subject" 
             onChange={this.onValueChange}
             value={this.state.subject}
