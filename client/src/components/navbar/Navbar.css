@@ -47,6 +47,13 @@
   text-decoration: none;
 }
 
+.header .nav-menu3 a {
+  font-family: "Paytone One", sans-serif;
+  font-size: 1.3rem;
+  color: var(--white);
+  text-decoration: none;
+}
+
 .header .navbar img {
   width: 60px;
   height: 60px;
@@ -108,6 +115,24 @@
   transition: all 0.3s ease-in-out;
 }
 
+.header .nav-menu3 {
+  display: flex;
+  width: 100%;
+  list-style: none;
+  text-decoration: none;
+  padding-left: 60%;
+}
+
+.header .nav-item3 {
+  padding-left: 55px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+}
+
 .header .nav-item a:hover {
   color: var(--green);
 }
@@ -117,6 +142,10 @@
 }
 
 .header .nav-item2 a:hover {
+  color: var(--green);
+}
+
+.header .nav-item3 a:hover {
   color: var(--green);
 }
 
@@ -175,6 +204,18 @@
     transition: .3s;
   }
 
+  .nav-menu3 {
+    position: fixed;
+    left: -100%;
+    top: 60px;
+    flex-direction: column;
+    background-color: rgba(116, 66, 8, 0.949);
+    width: 100%;
+    height: 180px;
+    text-align: center;
+    transition: .3s;
+  }
+
   .nav-menu.active {
       left: 0;
   }
@@ -187,6 +228,10 @@
   left: 0;
 }
 
+.nav-menu3.active {
+  left: 0;
+}
+
   .nav-item {
       margin: 1.1rem 0;
   }
@@ -196,6 +241,10 @@
 }
 
 .nav-item2 {
+  margin: 1.1rem 0;
+}
+
+.nav-item3 {
   margin: 1.1rem 0;
 }
 

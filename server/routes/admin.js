@@ -8,8 +8,8 @@ router.post("/login", async (req, res) => {
   
     let admin= await dbOperations.admin(name);
     //console.log('dddddddd',customer[0].password);
-    if(!admin) return res.status(400).send('Invalid email')
-    if(admin[0].password==password) return res.status(200).send('logged in')
+    if(!admin) return res.status(400).send('Invalid username or password')
+    if(admin[0].password==password) return res.status(200).send(admin)
     
     // bcrypt.compare(password, customer[0].password, function(err, result) {
     //   if (err) { throw (err); }
